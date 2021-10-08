@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AndroidStudy</string>
+    <string name="btn_start_intent_exp">start intent exp</string>
+    <string name="btn_start_activity">start activity</string>
+    <string name="open_tb">open taobao</string>
+    <string name="op_second_activity">打开第二个activity</string>
+    <string name="close_child_activity">关闭子activity</string>
+</resources>
