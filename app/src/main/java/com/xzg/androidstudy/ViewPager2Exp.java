@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class ViewPager2Exp extends AppCompatActivity {
 
 
     List<Integer> pics = new ArrayList<>();
+    LinearLayout dots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,22 @@ public class ViewPager2Exp extends AppCompatActivity {
         // 获取 viewPager
         ViewPager2 viewPager2 = findViewById(R.id.viewPager2);
         viewPager2.setAdapter(adapter);
+
+        // 添加选中事件
+        dots = findViewById(R.id.dots);
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+
+                for (int i = 0; i < dots.getChildCount(); i++) {
+                    // 将所有点设置为未选中
+                    ((ImageView) dots.getChildAt(i)).setBackgroundResource(R.drawable.dot_unselect);
+                }
+                // 设置当前位置对应的点未选中状态
+                ((ImageView) dots.getChildAt(position)).setBackgroundResource(R.drawable.dot_selected);
+            }
+        });
 
 
     }
