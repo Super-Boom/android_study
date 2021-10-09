@@ -24,7 +24,6 @@ public class ViewPager2Exp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_pager2_exp);
-        pics.add()
 
         pics.add(R.mipmap.a);
         pics.add(R.mipmap.b);
@@ -35,6 +34,7 @@ public class ViewPager2Exp extends AppCompatActivity {
             @NonNull
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                // 每个图片元素都是由一个ViewHolder包含，ViewHolder需要传入一个View
                 View v = LayoutInflater.from(ViewPager2Exp.this).inflate(R.layout.view_pager2_item, parent, false);
                 return new ViewHolder(v);
             }
@@ -42,6 +42,7 @@ public class ViewPager2Exp extends AppCompatActivity {
             @Override
             public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
                 ViewHolder h = (ViewHolder) holder;
+                h.container.setBackgroundResource(pics.get(position));
             }
 
             @Override
@@ -61,6 +62,7 @@ public class ViewPager2Exp extends AppCompatActivity {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            container = itemView.findViewById(R.id.container);
         }
     }
 }

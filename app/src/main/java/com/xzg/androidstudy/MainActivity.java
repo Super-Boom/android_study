@@ -86,6 +86,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
+
+        final Button openViewPager = findViewById(R.id.open_view_pager);
+        openViewPager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ViewPager2Exp.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // 点击事件

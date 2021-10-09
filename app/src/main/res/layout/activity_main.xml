@@ -28,6 +28,12 @@
         android:layout_height="wrap_content"
         android:text="@string/op_second_activity" />
 
+    <Button
+        android:id="@+id/open_view_pager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="打开view_pager" />
+
     <TextView
         android:id="@+id/tv_shows"
         android:layout_width="wrap_content"
