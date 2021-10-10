@@ -95,6 +95,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // 跳转到tab页面
+        final Button goToTabPage = findViewById(R.id.tab_layout);
+        goToTabPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SlidingTabActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // 点击事件
