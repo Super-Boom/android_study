@@ -5,4 +5,6 @@
     <string name="open_tb">open taobao</string>
     <string name="op_second_activity">打开第二个activity</string>
     <string name="close_child_activity">关闭子activity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

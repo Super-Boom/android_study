@@ -105,6 +105,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // 跳转x_tab页面
+        final Button goToXTab = findViewById(R.id.x_tab_btn);
+        goToXTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,XTabActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // 点击事件

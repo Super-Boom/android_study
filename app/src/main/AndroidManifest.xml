@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidStudy">
-        <activity android:name=".SlidingTabActivity"></activity>
+        <activity android:name=".XTabActivity"></activity>
+        <activity android:name=".SlidingTabActivity" />
         <activity android:name=".ViewPager2Exp" />
         <activity android:name=".RecyclerViewExp" />
         <activity android:name=".BackDataToMain" />
