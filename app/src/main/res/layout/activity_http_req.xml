@@ -16,7 +16,7 @@
         android:id="@+id/account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="账号"/>
+        android:hint="账号" />
 
     <EditText
         android:id="@+id/pwd"
@@ -30,4 +30,9 @@
         android:layout_height="wrap_content"
         android:text="post请求" />
 
+    <Button
+        android:id="@+id/parse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="解析json数据" />
 </LinearLayout>

@@ -26,6 +26,7 @@ public class HttpReqActivity extends AppCompatActivity {
 
         final Button getBtn = findViewById(R.id.get);
         final Button postBtn = findViewById(R.id.post);
+        final Button parseJsonBtn = findViewById(R.id.parse);
         getBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,10 +41,27 @@ public class HttpReqActivity extends AppCompatActivity {
             }
         });
 
+        parseJsonBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parseByJSONObject();
+            }
+        });
+
         // post
         accEdt = findViewById(R.id.account);
         pwdEdt = findViewById(R.id.pwd);
 
+    }
+
+    public void parseByJSONObject() {
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                String msg = get();
+            }
+        }.start();
     }
 
     public void getData(View v) {
@@ -71,7 +89,7 @@ public class HttpReqActivity extends AppCompatActivity {
     }
 
     // get请求
-    private void get() {
+    private String get() {
         try {
             // HttpURLConnection
             // 1.实例化一个url对象
@@ -99,10 +117,12 @@ public class HttpReqActivity extends AppCompatActivity {
                 }
                 String msg = new String(byteArrayOutputStream.toString());
                 Log.d("----------", msg + "========");
+                return msg;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
 
