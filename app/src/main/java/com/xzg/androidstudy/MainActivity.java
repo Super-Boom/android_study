@@ -111,7 +111,17 @@ public class MainActivity extends AppCompatActivity {
         goToXTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,XTabActivity.class);
+                Intent intent = new Intent(MainActivity.this, XTabActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 跳转到http请求页面
+        final Button goHttpPage = findViewById(R.id.go_http_page);
+        goHttpPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HttpReqActivity.class);
                 startActivity(intent);
             }
         });

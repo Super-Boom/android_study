@@ -46,6 +46,12 @@
         android:layout_height="wrap_content"
         android:text="跳转到x_tab" />
 
+    <Button
+        android:id="@+id/go_http_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="网络请求页" />
+
     <TextView
         android:id="@+id/tv_shows"
         android:layout_width="wrap_content"

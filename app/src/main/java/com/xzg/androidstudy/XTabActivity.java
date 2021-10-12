@@ -96,6 +96,7 @@ public class XTabActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                // 设置指定位置上的导航块被选中
                 tab.getTabAt(position).select();
             }
         });
