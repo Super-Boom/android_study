@@ -1,13 +1,20 @@
 package com.xzg.androidstudy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.androidkun.xtablayout.XTabLayout;
+import com.xzg.androidstudy.ui.XTabFragment;
+import com.xzg.androidstudy.ui.XTabFragment2;
+import com.xzg.androidstudy.ui.XTabFragment3;
+import com.xzg.androidstudy.ui.XTabFragment4;
+import com.xzg.androidstudy.ui.XTabFragment5;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +52,9 @@ public class XTabActivity extends AppCompatActivity {
             public void onTabSelected(XTabLayout.Tab tab) {
                 // 获取当前导航卡的位置及文本
                 int position = tab.getPosition();
-                String text = tab.getText().toString();
-                Toast.makeText(XTabActivity.this, position + "--" + text, Toast.LENGTH_SHORT).show();
-
+//                String text = tab.getText().toString();
+//                Toast.makeText(XTabActivity.this, position + "--" + text, Toast.LENGTH_SHORT).show();
+                pagers.setCurrentItem(position);
             }
 
             @Override
@@ -63,6 +70,34 @@ public class XTabActivity extends AppCompatActivity {
 
         pagers = findViewById(R.id.pagers);
         // 添加Fragment
-        list.add(new F)
+        list.add(new XTabFragment());
+        list.add(new XTabFragment2());
+        list.add(new XTabFragment3());
+        list.add(new XTabFragment4());
+        list.add(new XTabFragment5());
+
+
+        pagers.setAdapter(new FragmentStateAdapter(this) {
+            @NonNull
+            @Override
+            public Fragment createFragment(int position) {
+                return list.get(position);
+            }
+
+
+            @Override
+            public int getItemCount() {
+                return list.size();
+            }
+        });
+
+
+        pagers.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tab.getTabAt(position).select();
+            }
+        });
     }
 }
