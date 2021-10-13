@@ -7,6 +7,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import com.alibaba.fastjson.JSON;
+import com.xzg.androidstudy.service.TestApi;
+import com.xzg.androidstudy.data.TrailProductDetail;
+import com.xzg.androidstudy.service.TrailProduct;
+import com.xzg.androidstudy.service.impl.TrailProductImpl;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -15,9 +25,19 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Converter;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+
 public class HttpReqActivity extends AppCompatActivity {
 
     private EditText accEdt, pwdEdt;
+    private TextView txt1, txt2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +61,7 @@ public class HttpReqActivity extends AppCompatActivity {
             }
         });
 
+
         parseJsonBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,14 +73,32 @@ public class HttpReqActivity extends AppCompatActivity {
         accEdt = findViewById(R.id.account);
         pwdEdt = findViewById(R.id.pwd);
 
+        txt1 = findViewById(R.id.txt1);
+//        txt2 = findViewById(R.id.txt2);
+
     }
 
+
     public void parseByJSONObject() {
-        new Thread(){
+        new Thread() {
             @Override
             public void run() {
                 super.run();
-                String msg = get();
+                Call<TrailProductDetail> call = getTrailProductDetail();
+                try {
+                    TrailProductDetail trailProductDetail = call.execute().body();
+                    String trailProductDetailStr = JSON.toJSONString(trailProductDetail);
+                    // 解析
+                    // 显示到界面上
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            txt1.setText(trailProductDetailStr);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }.start();
     }
@@ -93,7 +132,8 @@ public class HttpReqActivity extends AppCompatActivity {
         try {
             // HttpURLConnection
             // 1.实例化一个url对象
-            URL url = new URL("http://www.imooc.com/api/teacher?type=3&cid=1");
+            String path = TestApi.getTrialProductDetail;
+            URL url = new URL(path);
             // 2.获取HttpURLConnection实例
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             // 3.设置和请求相关属性
@@ -102,6 +142,7 @@ public class HttpReqActivity extends AppCompatActivity {
             // 请求超时时长
             conn.setConnectTimeout(6000);
             // 4.获取相应码
+            Log.d("--------res_code", String.valueOf(conn.getResponseCode()));
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 // 5.判断相应码并获取相应数据(响应的正文)
                 // 获取响应的流
@@ -119,10 +160,28 @@ public class HttpReqActivity extends AppCompatActivity {
                 Log.d("----------", msg + "========");
                 return msg;
             }
+            Log.d("请求异常", "---------");
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    // 使用 Retrofit 发送http请求
+    private Call<TrailProductDetail> getTrailProductDetail() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://47.96.113.94:12500")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        GetTrailProductDetail getTrailProductDetail;
+        getTrailProductDetail = retrofit.create(GetTrailProductDetail.class);
+        Call<TrailProductDetail> call = getTrailProductDetail.getTrailProductDetail();
+        return call;
+    }
+
+    public interface GetTrailProductDetail {
+        @GET("/api/tuitui/getTrialProductDetail?trial_product_code=code1")
+        Call<TrailProductDetail> getTrailProductDetail();
     }
 
 

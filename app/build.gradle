@@ -40,4 +40,12 @@ dependencies {
     implementation 'io.github.h07000223:flycoTabLayout:3.0.0'
     // 添加XTabLayout依赖
     implementation 'com.androidkun:XTabLayout:1.1.5'
+    // 添加fastjson
+    implementation 'com.alibaba:fastjson:1.1.72.android'
+    // lombok
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    // 添加 retrofit 用于http请求
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    //
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 }
