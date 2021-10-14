@@ -7,4 +7,5 @@
     <string name="close_child_activity">关闭子activity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="player_start">player start</string>
 </resources>

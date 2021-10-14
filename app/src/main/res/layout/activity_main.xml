@@ -1,60 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <Button
         android:id="@+id/start_intent_exp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_start_intent_exp" />
 
     <Button
         android:id="@+id/start_activity"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_start_activity" />
 
     <Button
         android:id="@+id/open_tb"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/open_tb" />
 
     <Button
         android:id="@+id/btn_start"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/op_second_activity" />
 
     <Button
         android:id="@+id/open_view_pager"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="打开view_pager" />
 
     <Button
         android:id="@+id/tab_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="跳转tab页面" />
 
     <Button
         android:id="@+id/x_tab_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="跳转到x_tab" />
 
     <Button
         android:id="@+id/go_http_page"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="网络请求页" />
 
+    <Button
+        android:id="@+id/timer_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="计时器" />
+
     <TextView
         android:id="@+id/tv_shows"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp" />
 

@@ -48,83 +48,63 @@ public class MainActivity extends AppCompatActivity {
 
         // 添加点击事件
         final Button startIntentExp = findViewById(R.id.start_intent_exp);
-        startIntentExp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intentExp();
-            }
-        });
-
-        // 启动另外一个activity
         final Button startActivity = findViewById(R.id.start_activity);
-        startActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startAct();
-            }
-        });
-
-        // 打开淘宝
         final Button openTb = findViewById(R.id.open_tb);
-        openTb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openTbAppOut();
-            }
-        });
-
-
-        mBtnStart = findViewById(R.id.btn_start);
+        final Button openViewPager = findViewById(R.id.open_view_pager);
+        final Button goToTabPage = findViewById(R.id.tab_layout);
+        final Button goToXTab = findViewById(R.id.x_tab_btn);
+        final Button goHttpPage = findViewById(R.id.go_http_page);
+        final Button mBtnStart = findViewById(R.id.btn_start);
+        final Button toTimerPageBtn = findViewById(R.id.timer_page);
         mTvShow = findViewById(R.id.tv_shows);
+        startIntentExp.setOnClickListener(new ClickHandler());
+        // 启动另外一个activity
+        startActivity.setOnClickListener(new ClickHandler());
+        // 打开淘宝
+        openTb.setOnClickListener(new ClickHandler());
+        mBtnStart.setOnClickListener(new ClickHandler());
+        openViewPager.setOnClickListener(new ClickHandler());
+        // 跳转到tab页面
+        goToTabPage.setOnClickListener(new ClickHandler());
+        // 跳转x_tab页面
+        goToXTab.setOnClickListener(new ClickHandler());
+        // 跳转到http请求页面
+        goHttpPage.setOnClickListener(new ClickHandler());
+        // 跳转到计时器页面
+        toTimerPageBtn.setOnClickListener(new ClickHandler());
+    }
 
-        mBtnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 获得新打开的Activity关闭后返回的数据
-                // 第二个参数为请求码，可以根据业务需求自己编号
+    // 点击时间
+    class ClickHandler implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            int id = v.getId();
+            if (id == R.id.start_intent_exp) {
+                intentExp();
+            } else if (id == R.id.start_activity) {
+                startAct();
+            } else if (id == R.id.open_tb) {
+                openTbAppOut();
+            } else if (id == R.id.btn_start) {
                 Intent intent = new Intent(MainActivity.this, BackDataToMain.class);
                 startActivityForResult(intent, REQUEST_CODE);
-            }
-        });
-
-        final Button openViewPager = findViewById(R.id.open_view_pager);
-        openViewPager.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            } else if (id == R.id.open_view_pager) {
                 Intent intent = new Intent(MainActivity.this, ViewPager2Exp.class);
                 startActivity(intent);
-            }
-        });
-
-        // 跳转到tab页面
-        final Button goToTabPage = findViewById(R.id.tab_layout);
-        goToTabPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            } else if (id == R.id.tab_layout) {
                 Intent intent = new Intent(MainActivity.this, SlidingTabActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        // 跳转x_tab页面
-        final Button goToXTab = findViewById(R.id.x_tab_btn);
-        goToXTab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            } else if (id == R.id.x_tab_btn) {
                 Intent intent = new Intent(MainActivity.this, XTabActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        // 跳转到http请求页面
-        final Button goHttpPage = findViewById(R.id.go_http_page);
-        goHttpPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            } else if (id == R.id.go_http_page) {
                 Intent intent = new Intent(MainActivity.this, HttpReqActivity.class);
                 startActivity(intent);
+            } else if (id == R.id.timer_page) {
+                Intent intent = new Intent(MainActivity.this, TimerActivity.class);
+                startActivity(intent);
             }
-        });
+        }
     }
 
     // 点击事件

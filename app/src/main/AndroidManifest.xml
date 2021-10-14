@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xzg.androidstudy">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidStudy">
-        <activity android:name=".HttpReqActivity"></activity>
+        <activity android:name=".TimerActivity"></activity>
+        <activity android:name=".HttpReqActivity" />
         <activity android:name=".XTabActivity" />
         <activity android:name=".SlidingTabActivity" />
         <activity android:name=".ViewPager2Exp" />
@@ -34,5 +37,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>
