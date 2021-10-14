@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +24,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -35,6 +35,7 @@ public class HttpReqActivity extends AppCompatActivity {
     private EditText accEdt, pwdEdt;
     private TextView txt1, txt2;
     private String str;
+    Handler handler2;
     // 1.实例化handler
     final Handler handler = new Handler(new Handler.Callback() {
         // 只要Handler发送消息，必然触发该方法，比丘尼恩会传入一个Message对象
@@ -64,6 +65,8 @@ public class HttpReqActivity extends AppCompatActivity {
                 getData(v);
             } else if (id == R.id.msg_btn) {
                 sendMsgByMessage();
+            } else if (id == R.id.send_msg) {
+                handler2.sendEmptyMessage(1000);
             }
         }
     }
@@ -83,11 +86,31 @@ public class HttpReqActivity extends AppCompatActivity {
         pwdEdt = findViewById(R.id.pwd);
         txt1 = findViewById(R.id.txt1);
         final Button msgBtn = findViewById(R.id.msg_btn);
+        final Button sendMsg = findViewById(R.id.send_msg);
 
         getBtn.setOnClickListener(new ClickHandler());
         postBtn.setOnClickListener(new ClickHandler());
         parseJsonBtn.setOnClickListener(new ClickHandler());
         msgBtn.setOnClickListener(new ClickHandler());
+        sendMsg.setOnClickListener(new ClickHandler());
+
+
+        // 创建线程
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                Looper.prepare();
+                handler2 = new Handler(new Handler.Callback() {
+                    @Override
+                    public boolean handleMessage(@NonNull Message msg) {
+                        Log.d("TAG", "由主线程传递过来的Message,它的what是:" + msg.what);
+                        return false;
+                    }
+                });
+                Looper.loop();// 相当于产生一个while(true){...}循环
+            }
+        }.start();
     }
 
 

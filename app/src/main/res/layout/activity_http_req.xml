@@ -41,6 +41,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Message传递数据" />
+    <Button
+        android:id="@+id/send_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="由UI线程(主)向子线程传递消息"/>
 
     <TextView
         android:id="@+id/txt1"
