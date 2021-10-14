@@ -9,6 +9,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class TrailProductImpl implements TrailProduct {
+
     @Override
     public Call<TrailProductDetail> getTrailProductDetail() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://47.96.113.94:12500").build();

@@ -46,6 +46,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     // 添加 retrofit 用于http请求
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    //
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    // retrofit fast-json converter
+    implementation 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
 }

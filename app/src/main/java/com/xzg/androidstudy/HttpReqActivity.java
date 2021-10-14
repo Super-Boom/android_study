@@ -1,13 +1,17 @@
 package com.xzg.androidstudy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.xzg.androidstudy.service.TestApi;
@@ -30,15 +34,27 @@ import retrofit2.Callback;
 import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.fastjson.FastJsonConverterFactory;
 import retrofit2.http.GET;
 
 public class HttpReqActivity extends AppCompatActivity {
 
     private EditText accEdt, pwdEdt;
     private TextView txt1, txt2;
+    private String str;
+    // 1.实例化handler
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message msg) {
+//            Toast.makeText(HttpReqActivity.this, "handleMessage", Toast.LENGTH_SHORT).show();
+            txt1.setText(str);
+            return false;
+        }
+    });
 
 
+    // 2.在子线程中发送(空)消息
+    // 3.由Handler对象接收消息，并处理
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,21 +77,17 @@ public class HttpReqActivity extends AppCompatActivity {
             }
         });
 
-
         parseJsonBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                parseByJSONObject();
+//                parseByJSONObject();
+                refreshUiByHandler();
             }
         });
-
         // post
         accEdt = findViewById(R.id.account);
         pwdEdt = findViewById(R.id.pwd);
-
         txt1 = findViewById(R.id.txt1);
-//        txt2 = findViewById(R.id.txt2);
-
     }
 
 
@@ -99,6 +111,26 @@ public class HttpReqActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        }.start();
+    }
+
+    // 使用handler 更细UI状态
+    public void refreshUiByHandler() {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                Call<TrailProductDetail> call = getTrailProductDetail();
+                try {
+                    TrailProductDetail trailProductDetail = call.execute().body();
+                    str = JSON.toJSONString(trailProductDetail);
+                    // 解析
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                // 发送空消息
+                handler.sendEmptyMessage(1);
             }
         }.start();
     }
@@ -171,7 +203,7 @@ public class HttpReqActivity extends AppCompatActivity {
     private Call<TrailProductDetail> getTrailProductDetail() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://47.96.113.94:12500")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(FastJsonConverterFactory.create())
                 .build();
         GetTrailProductDetail getTrailProductDetail;
         getTrailProductDetail = retrofit.create(GetTrailProductDetail.class);
