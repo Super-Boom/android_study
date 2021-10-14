@@ -35,8 +35,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="解析json数据" />
+
+    <Button
+        android:id="@+id/msg_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Message传递数据" />
+
     <TextView
         android:id="@+id/txt1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

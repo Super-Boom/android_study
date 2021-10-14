@@ -16,11 +16,6 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.xzg.androidstudy.service.TestApi;
 import com.xzg.androidstudy.data.TrailProductDetail;
-import com.xzg.androidstudy.service.TrailProduct;
-import com.xzg.androidstudy.service.impl.TrailProductImpl;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -28,11 +23,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Converter;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.fastjson.FastJsonConverterFactory;
 import retrofit2.http.GET;
@@ -43,14 +36,37 @@ public class HttpReqActivity extends AppCompatActivity {
     private TextView txt1, txt2;
     private String str;
     // 1.实例化handler
-    private Handler handler = new Handler(new Handler.Callback() {
+    final Handler handler = new Handler(new Handler.Callback() {
+        // 只要Handler发送消息，必然触发该方法，比丘尼恩会传入一个Message对象
         @Override
         public boolean handleMessage(@NonNull Message msg) {
-//            Toast.makeText(HttpReqActivity.this, "handleMessage", Toast.LENGTH_SHORT).show();
-            txt1.setText(str);
+            if (msg.what == 1) {
+                txt1.setText(str);
+            } else if (msg.what == 2) {
+                Log.d("----", String.valueOf(msg.obj));
+                String str2 = "what:" + msg.what + ",arg1:" + msg.arg1 + ",arg2:" + msg.arg2;
+                Toast.makeText(HttpReqActivity.this, str2, Toast.LENGTH_SHORT).show();
+            }
             return false;
         }
     });
+
+    // 点击事件类
+    class ClickHandler implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            int id = v.getId();
+            if (id == R.id.parse) {
+                refreshUiByHandler();
+            } else if (id == R.id.get) {
+                getData(v);
+            } else if (id == R.id.post) {
+                getData(v);
+            } else if (id == R.id.msg_btn) {
+                sendMsgByMessage();
+            }
+        }
+    }
 
 
     // 2.在子线程中发送(空)消息
@@ -63,31 +79,15 @@ public class HttpReqActivity extends AppCompatActivity {
         final Button getBtn = findViewById(R.id.get);
         final Button postBtn = findViewById(R.id.post);
         final Button parseJsonBtn = findViewById(R.id.parse);
-        getBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(v);
-            }
-        });
-
-        postBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData(v);
-            }
-        });
-
-        parseJsonBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                parseByJSONObject();
-                refreshUiByHandler();
-            }
-        });
-        // post
         accEdt = findViewById(R.id.account);
         pwdEdt = findViewById(R.id.pwd);
         txt1 = findViewById(R.id.txt1);
+        final Button msgBtn = findViewById(R.id.msg_btn);
+
+        getBtn.setOnClickListener(new ClickHandler());
+        postBtn.setOnClickListener(new ClickHandler());
+        parseJsonBtn.setOnClickListener(new ClickHandler());
+        msgBtn.setOnClickListener(new ClickHandler());
     }
 
 
@@ -131,6 +131,29 @@ public class HttpReqActivity extends AppCompatActivity {
                 }
                 // 发送空消息
                 handler.sendEmptyMessage(1);
+            }
+        }.start();
+    }
+
+    // 使用Message传递数据
+    public void sendMsgByMessage() {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                Call<TrailProductDetail> call = getTrailProductDetail();
+                try {
+                    TrailProductDetail trailProductDetail = call.execute().body();
+                    str = JSON.toJSONString(trailProductDetail);
+                    Message msg = new Message();
+                    msg.what = 2;
+                    msg.arg1 = 666;
+                    msg.arg2 = 2333;
+                    msg.obj = trailProductDetail;
+                    handler.sendMessage(msg);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }.start();
     }
@@ -215,7 +238,6 @@ public class HttpReqActivity extends AppCompatActivity {
         @GET("/api/tuitui/getTrialProductDetail?trial_product_code=code1")
         Call<TrailProductDetail> getTrailProductDetail();
     }
-
 
     // post请求
     private void post(String account, String pwd) {
