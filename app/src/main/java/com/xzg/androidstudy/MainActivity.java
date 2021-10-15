@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         final Button goHttpPage = findViewById(R.id.go_http_page);
         final Button mBtnStart = findViewById(R.id.btn_start);
         final Button toTimerPageBtn = findViewById(R.id.timer_page);
+        final Button toAsyncTaskPageBtn = findViewById(R.id.go_to_async_task_page);
         mTvShow = findViewById(R.id.tv_shows);
         startIntentExp.setOnClickListener(new ClickHandler());
         // 启动另外一个activity
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         goHttpPage.setOnClickListener(new ClickHandler());
         // 跳转到计时器页面
         toTimerPageBtn.setOnClickListener(new ClickHandler());
+        // 跳转到异步任务页
+        toAsyncTaskPageBtn.setOnClickListener(new ClickHandler());
     }
 
     // 点击时间
@@ -102,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             } else if (id == R.id.timer_page) {
                 Intent intent = new Intent(MainActivity.this, TimerActivity.class);
+                startActivity(intent);
+            } else if (id == R.id.go_to_async_task_page) {
+                Intent intent = new Intent(MainActivity.this, AsyncTaskActivity.class);
                 startActivity(intent);
             }
         }

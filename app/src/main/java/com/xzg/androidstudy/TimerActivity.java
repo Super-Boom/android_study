@@ -29,6 +29,7 @@ public class TimerActivity extends AppCompatActivity {
 
 
     private static class TimerHandler2 extends Handler {
+        // WeakReference 弱引用，当activity销毁时弱引用类都会被销毁
         private final WeakReference<TimerActivity> timerActivityWeakReference;
 
         TimerHandler2(TimerActivity timerActivity) {

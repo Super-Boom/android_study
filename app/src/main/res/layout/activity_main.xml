@@ -58,6 +58,12 @@
         android:layout_height="wrap_content"
         android:text="计时器" />
 
+    <Button
+        android:id="@+id/go_to_async_task_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转异步任务页面" />
+
     <TextView
         android:id="@+id/tv_shows"
         android:layout_width="match_parent"
