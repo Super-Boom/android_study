@@ -3,6 +3,7 @@ package com.xzg.androidstudy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.lang.ref.WeakReference;
 
 /**
  * 计时器例子
@@ -22,7 +25,24 @@ public class TimerActivity extends AppCompatActivity {
 
 
     // post postDelay postAtTime
-    private Handler timerHandler2 = new Handler();
+    private final Handler timerHandler2 = new TimerHandler2(this);
+
+
+    private static class TimerHandler2 extends Handler {
+        private final WeakReference<TimerActivity> timerActivityWeakReference;
+
+        TimerHandler2(TimerActivity timerActivity) {
+            timerActivityWeakReference = new WeakReference<TimerActivity>(timerActivity);
+        }
+
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            TimerActivity timerActivity = timerActivityWeakReference.get();
+            timerActivity.timerTxt.setText("xxx");
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
