@@ -12,4 +12,6 @@
     <string name="tab">跳转tab页面</string>
     <string name="x_tab">跳转到x_tab</string>
     <string name="progress_bar">还没开始哦！</string>
+    <string name="cardview">cardView</string>
+    <string name="cardview_page">cardView例子</string>
 </resources>
