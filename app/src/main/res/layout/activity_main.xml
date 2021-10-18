@@ -32,19 +32,19 @@
         android:id="@+id/open_view_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="打开view_pager" />
+        android:text="@string/view_pager" />
 
     <Button
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="跳转tab页面" />
+        android:text="@string/tab" />
 
     <Button
         android:id="@+id/x_tab_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="跳转到x_tab" />
+        android:text="@string/x_tab" />
 
     <Button
         android:id="@+id/go_http_page"
@@ -63,6 +63,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="跳转异步任务页面" />
+
+    <Button
+        android:id="@+id/async_task_process_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="异步任务进度条" />
 
     <TextView
         android:id="@+id/tv_shows"

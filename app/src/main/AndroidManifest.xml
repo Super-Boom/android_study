@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".AsyncTaskActivity"></activity>
+        <activity android:name=".ProcessBarActivity"></activity>
+        <activity android:name=".AsyncTaskActivity" />
         <activity android:name=".TimerActivity" />
         <activity android:name=".HttpReqActivity" />
         <activity android:name=".XTabActivity" />

@@ -8,4 +8,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="player_start">player start</string>
+    <string name="view_pager">打开view_pager</string>
+    <string name="tab">跳转tab页面</string>
+    <string name="x_tab">跳转到x_tab</string>
+    <string name="progress_bar">还没开始哦！</string>
 </resources>
