@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         final Button asyncTaskBtn = findViewById(R.id.async_task_process_bar);
         final Button cardViewPage = findViewById(R.id.to_card_view_page);
         final Button sharedPrefsPage = findViewById(R.id.to_shared_prefs_page);
+        final Button toFragmentDemoPageBtn = findViewById(R.id.to_fragment_demo_page);
         mTvShow = findViewById(R.id.tv_shows);
         startIntentExp.setOnClickListener(new ClickHandler());
         // 启动另外一个activity
@@ -84,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         cardViewPage.setOnClickListener(new ClickHandler());
         // 跳转到storage页面
         sharedPrefsPage.setOnClickListener(new ClickHandler());
+        // 跳转到fragment demo 页面
+        toFragmentDemoPageBtn.setOnClickListener(new ClickHandler());
     }
 
     // 点击时间
@@ -125,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
 
             } else if (id == R.id.to_shared_prefs_page) {
                 Intent intent = new Intent(MainActivity.this, SharedPrefsActivity.class);
+                startActivity(intent);
+            } else if (id == R.id.to_fragment_demo_page) {
+                Intent intent = new Intent(MainActivity.this, FragmentDemoActivity.class);
                 startActivity(intent);
             }
         }

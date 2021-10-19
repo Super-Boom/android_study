@@ -16,4 +16,6 @@
     <string name="cardview_page">cardView例子</string>
     <string name="storage_demo">storage demo</string>
     <string name="shared_prefs_demo_btn">跳转到storage demo页面</string>
+    <string name="fragment_demo">fragment demo</string>
+    <string name="to_fragment_demo_page">to fragment demo page</string>
 </resources>

@@ -97,6 +97,18 @@
         android:text="@string/shared_prefs_demo_btn" />
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/fragment_demo"
+        android:textSize="16dp" />
+    <Button
+        android:id="@+id/to_fragment_demo_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/to_fragment_demo_page" />
+
+    <TextView
         android:id="@+id/tv_shows"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
