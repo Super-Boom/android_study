@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SharedPrefsActivity">
+
+    <Button
+        android:id="@+id/share_preference_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SharePreference演示" />
+
+    <Button
+        android:id="@+id/storage_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="外部存储演示" />
+
+    <Button
+        android:id="@+id/storage_inner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="内部存储演示" />
+</LinearLayout>

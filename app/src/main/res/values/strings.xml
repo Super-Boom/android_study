@@ -14,4 +14,6 @@
     <string name="progress_bar">还没开始哦！</string>
     <string name="cardview">cardView</string>
     <string name="cardview_page">cardView例子</string>
+    <string name="storage_demo">storage demo</string>
+    <string name="shared_prefs_demo_btn">跳转到storage demo页面</string>
 </resources>

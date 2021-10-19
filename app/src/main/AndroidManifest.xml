@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".CardViewPageActivity"></activity>
+        <activity android:name=".FragmentDemoActivity"></activity>
+        <activity android:name=".SharedPrefsActivity" />
+        <activity android:name=".CardViewPageActivity" />
         <activity android:name=".ProcessBarActivity" />
         <activity android:name=".AsyncTaskActivity" />
         <activity android:name=".TimerActivity" />
