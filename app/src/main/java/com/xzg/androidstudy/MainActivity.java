@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,11 +18,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
     /**
      * 使用startActivityForResult()方法在activity中传递数据
      * REQUEST_CODE:返回的结果码
      */
+    private TextView mTvShow;
     private final static int REQUEST_CODE = 1;
 
     private static class BtnItem {
@@ -33,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
             this.textViewTitle = textViewTitle;
             this.btnText = btnText;
             this.btnId = btnId;
+
         }
     }
+
 
     private BtnItem[] btnList = new BtnItem[]{
             new BtnItem("", "start Intent exp", R.id.start_intent),
@@ -51,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
             new BtnItem("cardView", "cardview_page", R.id.card_view_page),
             new BtnItem("storage_demo", "shared_prefs_demo_btn", R.id.share_prefs_demo_btn),
             new BtnItem("fragment_demo", "to_fragment_demo_page", R.id.to_fragment_demo_page),
+            new BtnItem("", "test1", R.id.test1),
+            new BtnItem("", "test2", R.id.test2),
+            new BtnItem("", "test3", R.id.test3),
+            new BtnItem("", "test4", R.id.test4),
     };
 
 
@@ -92,9 +103,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             int id = v.getId();
-            Log.d("id",id+"");
             if (id == R.id.start_intent) {
-                Log.d("-----","dsadsadsa");
                 intentExp();
             } else if (id == R.id.start_activity) {
                 startAct();
