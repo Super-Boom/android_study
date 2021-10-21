@@ -42,6 +42,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    Map<Integer, Class<?>> map = new HashMap<Integer, Class<?>>() {{
+        put(R.id.start_intent, null);
+        put(R.id.start_activity, null);
+        put(R.id.open_taobao, null);
+        put(R.id.open_second_act, BackDataToMain.class);
+        put(R.id.open_view_pager, BackDataToMain.class);
+        put(R.id.to_tab_page, BackDataToMain.class);
+        put(R.id.to_x_tab_page, BackDataToMain.class);
+        put(R.id.http_req, BackDataToMain.class);
+        put(R.id.timer, BackDataToMain.class);
+        put(R.id.to_async_task_page, BackDataToMain.class);
+        put(R.id.async_task_progress, BackDataToMain.class);
+        put(R.id.card_view_page, BackDataToMain.class);
+        put(R.id.share_prefs_demo_btn, BackDataToMain.class);
+        put(R.id.test1, null);
+        put(R.id.test2, null);
+        put(R.id.test3, null);
+        put(R.id.test4, null);
+    }};
 
     private BtnItem[] btnList = new BtnItem[]{
             new BtnItem("", "start Intent exp", R.id.start_intent),
@@ -142,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, FragmentDemoActivity.class);
                 startActivity(intent);
             }
+
+
+
         }
     }
 
