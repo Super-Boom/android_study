@@ -16,14 +16,11 @@ public class FragmentDemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment_demo);
 
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         DemoFragment demoFragment = new DemoFragment();
 
-        fragmentTransaction.add(R.id.fragment_container, demoFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        fragmentTransaction.add(R.id.fragment_demo_activity, demoFragment).commit();
     }
 }
