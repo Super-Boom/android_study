@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="start_intent" type="id" />
+    <item name="start_activity" type="id" />
+    <item name="open_taobao" type="id" />
+    <item name="open_second_act" type="id" />
+    <item name="open_view_pager" type="id" />
+    <item name="to_tab_page" type="id" />
+    <item name="to_x_tab_page" type="id" />
+    <item name="http_req" type="id" />
+    <item name="timer" type="id" />
+    <item name="to_async_task_page" type="id" />
+    <item name="async_task_progress" type="id" />
+    <item name="card_view_page" type="id" />
+    <item name="share_prefs_demo_btn" type="id" />
+    <item name="to_fragment_demo_page" type="id" />
+</resources>

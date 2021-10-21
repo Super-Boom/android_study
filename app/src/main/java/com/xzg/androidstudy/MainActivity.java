@@ -11,8 +11,10 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,9 +22,37 @@ public class MainActivity extends AppCompatActivity {
      * 使用startActivityForResult()方法在activity中传递数据
      * REQUEST_CODE:返回的结果码
      */
-    private Button mBtnStart;
-    private TextView mTvShow;
     private final static int REQUEST_CODE = 1;
+
+    private static class BtnItem {
+        String textViewTitle;
+        String btnText;
+        int btnId;
+
+        public BtnItem(String textViewTitle, String btnText, int btnId) {
+            this.textViewTitle = textViewTitle;
+            this.btnText = btnText;
+            this.btnId = btnId;
+        }
+    }
+
+    private BtnItem[] btnList = new BtnItem[]{
+            new BtnItem("", "start Intent exp", R.id.start_intent),
+            new BtnItem("", "启动activity", R.id.start_activity),
+            new BtnItem("", "打开淘宝", R.id.open_taobao),
+            new BtnItem("", "打开第二个activity", R.id.open_second_act),
+            new BtnItem("", "打开view pager", R.id.open_view_pager),
+            new BtnItem("", "跳转到tab页面", R.id.to_tab_page),
+            new BtnItem("", "跳转到x_tab页面", R.id.to_x_tab_page),
+            new BtnItem("", "网络请求页", R.id.http_req),
+            new BtnItem("", "计时器", R.id.timer),
+            new BtnItem("", "跳转到异步页面", R.id.to_async_task_page),
+            new BtnItem("", "异步任务进度条", R.id.async_task_progress),
+            new BtnItem("cardView", "cardview_page", R.id.card_view_page),
+            new BtnItem("storage_demo", "shared_prefs_demo_btn", R.id.share_prefs_demo_btn),
+            new BtnItem("fragment_demo", "to_fragment_demo_page", R.id.to_fragment_demo_page),
+    };
+
 
     /**
      * @param requestCode 请求码，即调用startActivityForResult()传递过去的值
@@ -46,47 +76,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 添加点击事件
-        final Button startIntentExp = findViewById(R.id.start_intent_exp);
-        final Button startActivity = findViewById(R.id.start_activity);
-        final Button openTb = findViewById(R.id.open_tb);
-        final Button openViewPager = findViewById(R.id.open_view_pager);
-        final Button goToTabPage = findViewById(R.id.tab_layout);
-        final Button goToXTab = findViewById(R.id.x_tab_btn);
-        final Button goHttpPage = findViewById(R.id.go_http_page);
-        final Button mBtnStart = findViewById(R.id.btn_start);
-        final Button toTimerPageBtn = findViewById(R.id.timer_page);
-        final Button toAsyncTaskPageBtn = findViewById(R.id.go_to_async_task_page);
-        final Button asyncTaskBtn = findViewById(R.id.async_task_process_bar);
-        final Button cardViewPage = findViewById(R.id.to_card_view_page);
-        final Button sharedPrefsPage = findViewById(R.id.to_shared_prefs_page);
-        final Button toFragmentDemoPageBtn = findViewById(R.id.to_fragment_demo_page);
-        mTvShow = findViewById(R.id.tv_shows);
-        startIntentExp.setOnClickListener(new ClickHandler());
-        // 启动另外一个activity
-        startActivity.setOnClickListener(new ClickHandler());
-        // 打开淘宝
-        openTb.setOnClickListener(new ClickHandler());
-        mBtnStart.setOnClickListener(new ClickHandler());
-        openViewPager.setOnClickListener(new ClickHandler());
-        // 跳转到tab页面
-        goToTabPage.setOnClickListener(new ClickHandler());
-        // 跳转x_tab页面
-        goToXTab.setOnClickListener(new ClickHandler());
-        // 跳转到http请求页面
-        goHttpPage.setOnClickListener(new ClickHandler());
-        // 跳转到计时器页面
-        toTimerPageBtn.setOnClickListener(new ClickHandler());
-        // 跳转到异步任务页
-        toAsyncTaskPageBtn.setOnClickListener(new ClickHandler());
-        // 跳转到异步任务进度条页面
-        asyncTaskBtn.setOnClickListener(new ClickHandler());
-        // 跳转到card_view页面
-        cardViewPage.setOnClickListener(new ClickHandler());
-        // 跳转到storage页面
-        sharedPrefsPage.setOnClickListener(new ClickHandler());
-        // 跳转到fragment demo 页面
-        toFragmentDemoPageBtn.setOnClickListener(new ClickHandler());
+        // 动态创建多个按钮
+        for (int i = 0; i < btnList.length; i++) {
+            Button btn = new Button(MainActivity.this);
+            btn.setText(btnList[i].btnText);
+            btn.setId(btnList[i].btnId);
+            btn.setOnClickListener(new ClickHandler());
+            LinearLayout mainAct = (LinearLayout) findViewById(R.id.main_activity);
+            mainAct.addView(btn);
+        }
     }
 
     // 点击时间
@@ -94,39 +92,41 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             int id = v.getId();
-            if (id == R.id.start_intent_exp) {
+            Log.d("id",id+"");
+            if (id == R.id.start_intent) {
+                Log.d("-----","dsadsadsa");
                 intentExp();
             } else if (id == R.id.start_activity) {
                 startAct();
-            } else if (id == R.id.open_tb) {
+            } else if (id == R.id.open_taobao) {
                 openTbAppOut();
-            } else if (id == R.id.btn_start) {
+            } else if (id == R.id.open_second_act) {
                 Intent intent = new Intent(MainActivity.this, BackDataToMain.class);
                 startActivityForResult(intent, REQUEST_CODE);
             } else if (id == R.id.open_view_pager) {
                 Intent intent = new Intent(MainActivity.this, ViewPager2Exp.class);
                 startActivity(intent);
-            } else if (id == R.id.tab_layout) {
+            } else if (id == R.id.to_tab_page) {
                 Intent intent = new Intent(MainActivity.this, SlidingTabActivity.class);
                 startActivity(intent);
-            } else if (id == R.id.x_tab_btn) {
+            } else if (id == R.id.to_x_tab_page) {
                 Intent intent = new Intent(MainActivity.this, XTabActivity.class);
                 startActivity(intent);
-            } else if (id == R.id.go_http_page) {
+            } else if (id == R.id.http_req) {
                 Intent intent = new Intent(MainActivity.this, HttpReqActivity.class);
                 startActivity(intent);
-            } else if (id == R.id.timer_page) {
+            } else if (id == R.id.timer) {
                 Intent intent = new Intent(MainActivity.this, TimerActivity.class);
                 startActivity(intent);
-            } else if (id == R.id.go_to_async_task_page) {
+            } else if (id == R.id.to_async_task_page) {
                 Intent intent = new Intent(MainActivity.this, AsyncTaskActivity.class);
                 startActivity(intent);
-            } else if (id == R.id.async_task_process_bar) {
+            } else if (id == R.id.async_task_progress) {
                 Intent intent = new Intent(MainActivity.this, ProcessBarActivity.class);
                 startActivity(intent);
-            } else if (id == R.id.to_card_view_page) {
+            } else if (id == R.id.card_view_page) {
 
-            } else if (id == R.id.to_shared_prefs_page) {
+            } else if (id == R.id.share_prefs_demo_btn) {
                 Intent intent = new Intent(MainActivity.this, SharedPrefsActivity.class);
                 startActivity(intent);
             } else if (id == R.id.to_fragment_demo_page) {
