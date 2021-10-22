@@ -24,4 +24,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="内部存储演示" />
+
+    <!--fragment 占位符-->
+    <FrameLayout
+        android:id="@+id/share_preference"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

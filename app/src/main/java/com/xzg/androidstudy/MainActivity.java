@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             new BtnItem("", "跳转到异步页面", R.id.to_async_task_page, AsyncTaskActivity.class),
             new BtnItem("", "异步任务进度条", R.id.async_task_progress, ProcessBarActivity.class),
             new BtnItem("cardView", "cardview_page", R.id.card_view_page, null),
-            new BtnItem("storage_demo", "shared_prefs_demo_btn", R.id.share_prefs_demo_btn, SharedPrefsActivity.class),
+            new BtnItem("storage_demo", "试用sharePreferences本地储存", R.id.share_prefs_demo_btn, SharedPrefsActivity.class),
             new BtnItem("fragment_demo", "to_fragment_demo_page", R.id.to_fragment_demo_page, FragmentDemoActivity.class),
             new BtnItem("", "test1", R.id.test1, null),
             new BtnItem("", "test2", R.id.test2, null),
