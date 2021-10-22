@@ -25,21 +25,30 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         Button btn = view.findViewById(R.id.login);
+
+        // 获取SharePreference对象(1:文件名，2:模式)
+        Activity act = getActivity();
+        SharedPreferences sharedPreferences = act.getSharedPreferences("myshare", act.MODE_PRIVATE);
+        // 设置默认值
+        String accStr = sharedPreferences.getString("account", "");
+        String pwdStr = sharedPreferences.getString("pwd", "");
+        // 1.获取两个输入框的内容
+        accEdt = view.findViewById(R.id.account);
+        pwdEdt = view.findViewById(R.id.pwd);
+        accEdt.setText(accStr);
+        pwdEdt.setText(pwdStr);
+
         // Inflate the layout for this fragment
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 1.获取两个输入框的内容
-                accEdt = view.findViewById(R.id.account);
-                pwdEdt = view.findViewById(R.id.pwd);
+
                 String account = accEdt.getText().toString();
                 String pwd = pwdEdt.getText().toString();
                 // 2.验证(admin,123)
                 if (account.equals("admin") && pwd.equals("123")) {
                     // 2.1存储信息到SharePreference
-                    // 获取SharePreference对象(1:文件名，2:模式)
-                    Activity act = getActivity();
-                    SharedPreferences sharedPreferences = act.getSharedPreferences("myshare", act.MODE_PRIVATE);
+
                     // 获取Editor对象
                     SharedPreferences.Editor edt = sharedPreferences.edit();
                     // 存储信息

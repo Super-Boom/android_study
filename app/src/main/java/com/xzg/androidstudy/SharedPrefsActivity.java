@@ -24,10 +24,6 @@ public class SharedPrefsActivity extends AppCompatActivity {
 
         Button sharePrefsBtn = findViewById(R.id.share_preference_show);
         sharePrefsBtn.setOnClickListener(new ClickHandler());
-
-
-//        Button loginBtn = findViewById(R.id.login);
-//        loginBtn.setOnClickListener(new ClickHandler());
     }
 
 
@@ -35,12 +31,18 @@ public class SharedPrefsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             int id = v.getId();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            if(!fragmentTransaction.isEmpty()){
+                fragmentTransaction.remove();
+            }
             if (id == R.id.share_preference_show) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
 
                 LoginFragment loginFragment = new LoginFragment();
                 fragmentTransaction.add(R.id.share_preference, loginFragment).commit();
+            } else if(id==R.id.storage_out){
+
             }
         }
     }
