@@ -33,54 +33,35 @@ public class MainActivity extends AppCompatActivity {
         String textViewTitle;
         String btnText;
         int btnId;
+        Class<?> actClass;
 
-        public BtnItem(String textViewTitle, String btnText, int btnId) {
+        public BtnItem(String textViewTitle, String btnText, int btnId, Class<?> actClass) {
             this.textViewTitle = textViewTitle;
             this.btnText = btnText;
             this.btnId = btnId;
-
+            this.actClass = actClass;
         }
     }
 
-    Map<Integer, Class<?>> map = new HashMap<Integer, Class<?>>() {{
-        put(R.id.start_intent, null);
-        put(R.id.start_activity, null);
-        put(R.id.open_taobao, null);
-        put(R.id.open_second_act, BackDataToMain.class);
-        put(R.id.open_view_pager, BackDataToMain.class);
-        put(R.id.to_tab_page, BackDataToMain.class);
-        put(R.id.to_x_tab_page, BackDataToMain.class);
-        put(R.id.http_req, BackDataToMain.class);
-        put(R.id.timer, BackDataToMain.class);
-        put(R.id.to_async_task_page, BackDataToMain.class);
-        put(R.id.async_task_progress, BackDataToMain.class);
-        put(R.id.card_view_page, BackDataToMain.class);
-        put(R.id.share_prefs_demo_btn, BackDataToMain.class);
-        put(R.id.test1, null);
-        put(R.id.test2, null);
-        put(R.id.test3, null);
-        put(R.id.test4, null);
-    }};
-
-    private BtnItem[] btnList = new BtnItem[]{
-            new BtnItem("", "start Intent exp", R.id.start_intent),
-            new BtnItem("", "启动activity", R.id.start_activity),
-            new BtnItem("", "打开淘宝", R.id.open_taobao),
-            new BtnItem("", "打开第二个activity", R.id.open_second_act),
-            new BtnItem("", "打开view pager", R.id.open_view_pager),
-            new BtnItem("", "跳转到tab页面", R.id.to_tab_page),
-            new BtnItem("", "跳转到x_tab页面", R.id.to_x_tab_page),
-            new BtnItem("", "网络请求页", R.id.http_req),
-            new BtnItem("", "计时器", R.id.timer),
-            new BtnItem("", "跳转到异步页面", R.id.to_async_task_page),
-            new BtnItem("", "异步任务进度条", R.id.async_task_progress),
-            new BtnItem("cardView", "cardview_page", R.id.card_view_page),
-            new BtnItem("storage_demo", "shared_prefs_demo_btn", R.id.share_prefs_demo_btn),
-            new BtnItem("fragment_demo", "to_fragment_demo_page", R.id.to_fragment_demo_page),
-            new BtnItem("", "test1", R.id.test1),
-            new BtnItem("", "test2", R.id.test2),
-            new BtnItem("", "test3", R.id.test3),
-            new BtnItem("", "test4", R.id.test4),
+    private final BtnItem[] btnList = new BtnItem[]{
+            new BtnItem("", "start Intent exp", R.id.start_intent, null),
+            new BtnItem("", "启动activity", R.id.start_activity, null),
+            new BtnItem("", "打开淘宝", R.id.open_taobao, null),
+            new BtnItem("", "打开第二个activity", R.id.open_second_act, BackDataToMain.class),
+            new BtnItem("", "打开view pager", R.id.open_view_pager, ViewPager2Exp.class),
+            new BtnItem("", "跳转到tab页面", R.id.to_tab_page, SlidingTabActivity.class),
+            new BtnItem("", "跳转到x_tab页面", R.id.to_x_tab_page, XTabActivity.class),
+            new BtnItem("", "网络请求页", R.id.http_req, HttpReqActivity.class),
+            new BtnItem("", "计时器", R.id.timer, TimerActivity.class),
+            new BtnItem("", "跳转到异步页面", R.id.to_async_task_page, AsyncTaskActivity.class),
+            new BtnItem("", "异步任务进度条", R.id.async_task_progress, ProcessBarActivity.class),
+            new BtnItem("cardView", "cardview_page", R.id.card_view_page, null),
+            new BtnItem("storage_demo", "shared_prefs_demo_btn", R.id.share_prefs_demo_btn, SharedPrefsActivity.class),
+            new BtnItem("fragment_demo", "to_fragment_demo_page", R.id.to_fragment_demo_page, FragmentDemoActivity.class),
+            new BtnItem("", "test1", R.id.test1, null),
+            new BtnItem("", "test2", R.id.test2, null),
+            new BtnItem("", "test3", R.id.test3, null),
+            new BtnItem("", "test4", R.id.test4, null),
     };
 
 
@@ -111,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             Button btn = new Button(MainActivity.this);
             btn.setText(btnList[i].btnText);
             btn.setId(btnList[i].btnId);
-            btn.setOnClickListener(new ClickHandler());
+            btn.setOnClickListener(new ClickHandler(btnList[i].actClass));
             LinearLayout mainAct = (LinearLayout) findViewById(R.id.main_activity);
             mainAct.addView(btn);
         }
@@ -119,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
 
     // 点击时间
     class ClickHandler implements View.OnClickListener {
+        private final Class<?> actClass;
+
+        public ClickHandler(Class<?> actClass) {
+            this.actClass = actClass;
+        }
+
         @Override
         public void onClick(View v) {
             int id = v.getId();
@@ -128,42 +115,10 @@ public class MainActivity extends AppCompatActivity {
                 startAct();
             } else if (id == R.id.open_taobao) {
                 openTbAppOut();
-            } else if (id == R.id.open_second_act) {
-                Intent intent = new Intent(MainActivity.this, BackDataToMain.class);
+            } else if (this.actClass != null) {
+                Intent intent = new Intent(MainActivity.this, this.actClass);
                 startActivityForResult(intent, REQUEST_CODE);
-            } else if (id == R.id.open_view_pager) {
-                Intent intent = new Intent(MainActivity.this, ViewPager2Exp.class);
-                startActivity(intent);
-            } else if (id == R.id.to_tab_page) {
-                Intent intent = new Intent(MainActivity.this, SlidingTabActivity.class);
-                startActivity(intent);
-            } else if (id == R.id.to_x_tab_page) {
-                Intent intent = new Intent(MainActivity.this, XTabActivity.class);
-                startActivity(intent);
-            } else if (id == R.id.http_req) {
-                Intent intent = new Intent(MainActivity.this, HttpReqActivity.class);
-                startActivity(intent);
-            } else if (id == R.id.timer) {
-                Intent intent = new Intent(MainActivity.this, TimerActivity.class);
-                startActivity(intent);
-            } else if (id == R.id.to_async_task_page) {
-                Intent intent = new Intent(MainActivity.this, AsyncTaskActivity.class);
-                startActivity(intent);
-            } else if (id == R.id.async_task_progress) {
-                Intent intent = new Intent(MainActivity.this, ProcessBarActivity.class);
-                startActivity(intent);
-            } else if (id == R.id.card_view_page) {
-
-            } else if (id == R.id.share_prefs_demo_btn) {
-                Intent intent = new Intent(MainActivity.this, SharedPrefsActivity.class);
-                startActivity(intent);
-            } else if (id == R.id.to_fragment_demo_page) {
-                Intent intent = new Intent(MainActivity.this, FragmentDemoActivity.class);
-                startActivity(intent);
             }
-
-
-
         }
     }
 
