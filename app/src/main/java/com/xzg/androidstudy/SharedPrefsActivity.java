@@ -34,15 +34,15 @@ public class SharedPrefsActivity extends AppCompatActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             if(!fragmentTransaction.isEmpty()){
-                fragmentTransaction.remove();
+
             }
+            LoginFragment loginFragment = new LoginFragment();
+            ExternalFragment externalFragment = new ExternalFragment();
             if (id == R.id.share_preference_show) {
-
-
-                LoginFragment loginFragment = new LoginFragment();
                 fragmentTransaction.add(R.id.share_preference, loginFragment).commit();
-            } else if(id==R.id.storage_out){
-
+            } else if (id == R.id.storage_out) {
+                fragmentTransaction.remove(loginFragment);
+                fragmentTransaction.add(R.id.share_preference, externalFragment).commit();
             }
         }
     }
