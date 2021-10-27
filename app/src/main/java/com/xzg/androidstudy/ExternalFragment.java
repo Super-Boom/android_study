@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.xzg.androidstudy.utils.DataReadAndWrite;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -20,7 +22,7 @@ import java.io.IOException;
 
 public class ExternalFragment extends Fragment {
 
-
+    DataReadAndWrite dataReadAndWrite = new DataReadAndWrite();
     EditText infoEdt;
 
     @Override
@@ -52,9 +54,9 @@ public class ExternalFragment extends Fragment {
             File file = new File(folder, "xzg.txt");
             if (id == R.id.save) {
                 String txt = infoEdt.getText().toString();
-                writeTextData(file, txt);
+                dataReadAndWrite.writeTextData(file, txt);
             } else if (id == R.id.read) {
-                String data = getData(file);
+                String data = dataReadAndWrite.getData(file);
                 if (data != null) {
                     infoEdt.setText(data);
                 }
@@ -63,43 +65,5 @@ public class ExternalFragment extends Fragment {
     }
 
 
-    private void writeTextData(File file, String data) {
-        FileOutputStream fileOutputStream = null;
-        try {
-            fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(data.getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (fileOutputStream != null) {
-                try {
-                    fileOutputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
-    private String getData(File myfile) {
-        FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(myfile);
-            byte[] b = new byte[1024];
-            int len = fileInputStream.read(b);
-            String str2 = new String(b,0,len);
-            return str2;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (fileInputStream != null) {
-                try {
-                    fileInputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return null;
-    }
 }
