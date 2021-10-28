@@ -15,8 +15,7 @@
     <item name="share_prefs_demo_btn" type="id" />
     <item name="to_fragment_demo_page" type="id" />
     <item name="to_sqlite_page" type="id" />
-    <item name="test1" type="id" />
-    <item name="test2" type="id" />
+    <item name="to_add_log_page" type="id" />
     <item name="test3" type="id" />
     <item name="test4" type="id" />
 </resources>

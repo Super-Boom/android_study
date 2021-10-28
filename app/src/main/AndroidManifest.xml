@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".pages.food.AddFood"></activity>
+        <activity android:name=".pages.image_filter.ImageFilter"></activity>
+        <activity android:name=".pages.food.AddFood" />
         <activity android:name=".pages.food.FoodActivity" />
         <activity android:name=".FragmentDemoActivity" />
         <activity android:name=".SharedPrefsActivity" />

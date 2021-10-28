@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xzg.androidstudy.pages.food.FoodActivity;
+import com.xzg.androidstudy.pages.image_filter.ImageFilter;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             new BtnItem("storage_demo", "试用sharePreferences本地储存", R.id.share_prefs_demo_btn, SharedPrefsActivity.class),
             new BtnItem("fragment_demo", "to_fragment_demo_page", R.id.to_fragment_demo_page, FragmentDemoActivity.class),
             new BtnItem("", "跳转到SQLite页面", R.id.to_sqlite_page, FoodActivity.class),
-            new BtnItem("", "test2", R.id.test2, null),
+            new BtnItem("", "跳转发布笔记页面", R.id.to_add_log_page, ImageFilter.class),
             new BtnItem("", "test3", R.id.test3, null),
             new BtnItem("", "test4", R.id.test4, null),
     };
