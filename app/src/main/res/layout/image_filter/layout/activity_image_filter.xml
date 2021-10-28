@@ -4,11 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".pages.image_filter.ImageFilter">
 
+
+    <jp.co.cyberagent.android.gpuimage.GPUImageView
+        android:id="@+id/img_container"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        app:gpuimage_show_loading="false"
+        app:gpuimage_surface_type="texture_view" />
     <Button
         android:id="@+id/add_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="发布" />
+
+
 </LinearLayout>
