@@ -5,21 +5,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.xzg.androidstudy.pages.food.FoodActivity;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -58,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             new BtnItem("cardView", "cardview_page", R.id.card_view_page, null),
             new BtnItem("storage_demo", "试用sharePreferences本地储存", R.id.share_prefs_demo_btn, SharedPrefsActivity.class),
             new BtnItem("fragment_demo", "to_fragment_demo_page", R.id.to_fragment_demo_page, FragmentDemoActivity.class),
-            new BtnItem("", "test1", R.id.test1, null),
+            new BtnItem("", "跳转到SQLite页面", R.id.to_sqlite_page, FoodActivity.class),
             new BtnItem("", "test2", R.id.test2, null),
             new BtnItem("", "test3", R.id.test3, null),
             new BtnItem("", "test4", R.id.test4, null),

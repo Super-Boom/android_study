@@ -1,4 +1,4 @@
-package com.xzg.androidstudy;
+package com.xzg.androidstudy.dao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -4,6 +4,8 @@
     package="com.xzg.androidstudy">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".FragmentDemoActivity"></activity>
+        <activity android:name=".pages.food.AddFood"></activity>
+        <activity android:name=".pages.food.FoodActivity" />
+        <activity android:name=".FragmentDemoActivity" />
         <activity android:name=".SharedPrefsActivity" />
         <activity android:name=".CardViewPageActivity" />
         <activity android:name=".ProcessBarActivity" />
@@ -44,6 +48,4 @@
         </activity>
     </application>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>
