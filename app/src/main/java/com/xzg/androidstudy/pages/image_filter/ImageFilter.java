@@ -14,6 +14,7 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.tools.PictureFileUtils;
 import com.xzg.androidstudy.R;
 import com.xzg.androidstudy.utils.GlideEngine;
 
@@ -60,6 +61,9 @@ public class ImageFilter extends AppCompatActivity {
             List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
             Log.d("-------------selectList", String.valueOf(selectList));
             showSelectPic(selectList);
+
+            // 清理缓存
+            PictureFileUtils.deleteCacheDirFile(ImageFilter.this,PictureMimeType.ofImage());
         }
     }
 
