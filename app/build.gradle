@@ -31,6 +31,7 @@ android {
             res.srcDirs = [
                     'src/main/res/layout/food',
                     'src/main/res/layout/image_filter',
+                    'src/main/res/layout/face',
                     'src/main/res/layout',
                     'src/main/res'
             ]
@@ -69,4 +70,14 @@ dependencies {
     implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
     // android 图片加载库
     implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    // 华为人脸相关sdk
+    // 引入基础SDK
+    implementation 'com.huawei.hms:ml-computer-vision-face:2.0.1.300'
+    // 引入人脸轮廓+关键点检测模型包
+    implementation 'com.huawei.hms:ml-computer-vision-face-shape-point-model:2.0.1.300'
+    // 引入表情检测模型包
+    implementation 'com.huawei.hms:ml-computer-vision-face-emotion-model:2.0.1.300'
+    // 引入特征检测模型包
+    implementation 'com.huawei.hms:ml-computer-vision-face-feature-model:2.0.1.300'
 }
