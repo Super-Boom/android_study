@@ -10,6 +10,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.SeekBar;
 
+
+import com.aliyun.ocr20191230.models.RecognizeBankCardAdvanceRequest;
+import com.aliyun.ocr20191230.models.RecognizeBankCardRequest;
+import com.aliyun.ocr20191230.models.RecognizeBankCardResponse;
+import com.alibaba.fastjson.JSON;
+import com.aliyun.tea.TeaException;
+import com.aliyun.teaopenapi.models.Config;
+import com.aliyun.teautil.models.RuntimeOptions;
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
 import com.huawei.hmf.tasks.Task;
@@ -19,9 +27,12 @@ import com.huawei.hms.mlsdk.face.MLFace;
 import com.huawei.hms.mlsdk.face.MLFaceAnalyzer;
 import com.huawei.hms.mlsdk.face.MLFaceShape;
 import com.xzg.androidstudy.R;
+import com.aliyun.ocr20191230.Client;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class Face extends AppCompatActivity {
@@ -67,6 +78,38 @@ public class Face extends AppCompatActivity {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+
+        // 阿里云美颜sdk
+        Config config = new Config();
+        config.accessKeyId = "";// 此处填阿里云的access_key
+        config.accessKeySecret = "";
+//        config.type = "";
+        config.regionId = "";
+        try {
+            Client client = new Client(config);
+
+            RuntimeOptions runtimeOptions = new RuntimeOptions();
+            recognizeBankCardAdvance(client,runtimeOptions);
+            config.endpoint="ocr.cn-shanghai.aliyuncs.com";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void recognizeBankCardAdvance(Client client, RuntimeOptions runtimeOptions) throws Exception {
+        try {
+            RecognizeBankCardAdvanceRequest req = new RecognizeBankCardAdvanceRequest();
+            InputStream inputStream = new FileInputStream(new File("/Users/robinqu/Library/bankCard.png"));
+            req.imageURLObject=inputStream;
+            RecognizeBankCardResponse rep = client.recognizeBankCardAdvance(req, runtimeOptions);
+            System.out.println("银行卡识别="+JSON.toJSONString(rep));
+        }
+        catch (TeaException e){
+            System.out.println("银行卡识别异常了");
+            System.out.println(JSON.toJSONString(e.getData()));
         }
     }
 

@@ -20,6 +20,8 @@ allprojects {
         google()
         jcenter()
         maven {url 'https://developer.huawei.com/repo/'}
+        // 添加阿里云maven库
+        maven { url "https://maven.aliyun.com/repository/releases" }
     }
 }
 
