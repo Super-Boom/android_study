@@ -16,9 +16,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.xzg.androidstudy.entity.Student;
 import com.xzg.androidstudy.pages.face.Face;
 import com.xzg.androidstudy.pages.food.FoodActivity;
 import com.xzg.androidstudy.pages.image_filter.ImageFilter;
+import com.xzg.androidstudy.pages.student_room_example.StudentActivity;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             new BtnItem("", "跳转到SQLite页面", R.id.to_sqlite_page, FoodActivity.class),
             new BtnItem("", "跳转发布笔记页面", R.id.to_add_log_page, ImageFilter.class),
             new BtnItem("", "跳转到美颜页面", R.id.to_face_page, Face.class),
-            new BtnItem("", "test4", R.id.test4, null),
+            new BtnItem("", "跳转到room例子页面", R.id.to_room_example_page, StudentActivity.class),
     };
 
 
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 openTbAppOut();
             } else if (this.actClass != null) {
                 Intent intent = new Intent(MainActivity.this, this.actClass);
-                startActivityForResult(intent, REQUEST_CODE);
+                startActivity(intent);
             }
         }
     }

@@ -13,6 +13,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+//            }
+//        }
     }
 
     buildTypes {
@@ -32,6 +37,7 @@ android {
                     'src/main/res/layout/food',
                     'src/main/res/layout/image_filter',
                     'src/main/res/layout/face',
+                    'src/main/res/layout/student',
                     'src/main/res/layout',
                     'src/main/res'
             ]
@@ -80,17 +86,8 @@ dependencies {
     implementation 'com.huawei.hms:ml-computer-vision-face-emotion-model:2.0.1.300'
     // 引入特征检测模型包
     implementation 'com.huawei.hms:ml-computer-vision-face-feature-model:2.0.1.300'
-    // 添加阿里云美颜依赖
-    implementation 'com.aliyun:ocr20191230:1.0.3'
-    implementation 'com.aliyun:aliyun-java-sdk-core:4.5.25'
-    implementation 'com.aliyun:facebody20191230:1.0.19'
-    implementation 'com.aliyun:imagerecog20190930:1.0.5'
-    implementation 'com.aliyun:imageseg20191230:1.0.0'
-    implementation 'com.aliyun:imageenhan20190930:1.0.3'
-    implementation 'com.aliyun:goodstech20191230:0.0.3'
-    implementation 'com.aliyun:objectdet20191230:2.0.7'
-    implementation 'com.aliyun:imgsearch20200320:1.0.0'
-    implementation 'com.aliyun:videorecog20200320:1.0.0'
-    implementation 'com.aliyun:videoseg20200320:1.0.1'
-    implementation 'com.aliyun:videoenhan20200320:1.0.2'
+    // 添加room依赖
+    def room_version = "2.3.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 }

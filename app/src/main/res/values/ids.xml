@@ -17,5 +17,5 @@
     <item name="to_sqlite_page" type="id" />
     <item name="to_add_log_page" type="id" />
     <item name="to_face_page" type="id" />
-    <item name="test4" type="id" />
+    <item name="to_room_example_page" type="id" />
 </resources>
