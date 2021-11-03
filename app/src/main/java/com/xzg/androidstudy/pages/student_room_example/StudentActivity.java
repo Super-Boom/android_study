@@ -3,6 +3,7 @@ package com.xzg.androidstudy.pages.student_room_example;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -100,7 +101,7 @@ public class StudentActivity extends AppCompatActivity {
                     Toast.makeText(StudentActivity.this, "输入不能为空", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("------","UpdateStudentTask");
-                    new UpdateStudentTask(student.id, etName.getText().toString(), etAge.getText().toString());
+                    new UpdateStudentTask(student.id, etName.getText().toString(), etAge.getText().toString()).execute();
                 }
             }
         });
@@ -172,20 +173,17 @@ public class StudentActivity extends AppCompatActivity {
         int id;
         String name;
         String age;
-        Student student;
         public UpdateStudentTask(final int id, final String name, final String age) {
             Log.d("------","执行UpdateStudentTask方法");
             this.id = id;
             this.name = name;
             this.age = age;
-            student = new Student(id,name,age);
-
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Log.d("*******","UpdateStudentTask");
-            myDatabase.studentDao().updateStudent(student);
+            Log.d("------","-----UpdateStudentTask");
+            myDatabase.studentDao().updateStudent(new Student(id, name, age));
             studentList.clear();
             studentList.addAll(myDatabase.studentDao().getStudentList());
             return null;
@@ -203,6 +201,7 @@ public class StudentActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            Log.d("------执行删除","执行删除");
             myDatabase.studentDao().deleteStudent(student);
             studentList.clear();
             studentList.addAll(myDatabase.studentDao().getStudentList());
