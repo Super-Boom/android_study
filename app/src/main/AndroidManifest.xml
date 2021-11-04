@@ -58,7 +58,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- 广播 -->
-        <receiver android:name=".broadcast.BroadcastExample">
+        <receiver
+            android:name=".broadcast.BroadcastExample"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
                 <!-- 开机广播 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
