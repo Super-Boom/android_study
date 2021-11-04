@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xzg.androidstudy.entity.Student;
+import com.xzg.androidstudy.pages.broadcast.BroadcastActivity;
 import com.xzg.androidstudy.pages.face.Face;
 import com.xzg.androidstudy.pages.food.FoodActivity;
 import com.xzg.androidstudy.pages.image_filter.ImageFilter;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             new BtnItem("", "跳转发布笔记页面", R.id.to_add_log_page, ImageFilter.class),
             new BtnItem("", "跳转到美颜页面", R.id.to_face_page, Face.class),
             new BtnItem("", "跳转到room例子页面", R.id.to_room_example_page, StudentActivity.class),
+            new BtnItem("", "跳转到广播页", R.id.to_broadcast_page, BroadcastActivity.class),
     };
 
 

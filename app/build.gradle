@@ -38,6 +38,7 @@ android {
                     'src/main/res/layout/image_filter',
                     'src/main/res/layout/face',
                     'src/main/res/layout/student',
+                    'src/main/res/layout/broadcast',
                     'src/main/res/layout',
                     'src/main/res'
             ]

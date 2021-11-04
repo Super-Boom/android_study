@@ -18,4 +18,5 @@
     <item name="to_add_log_page" type="id" />
     <item name="to_face_page" type="id" />
     <item name="to_room_example_page" type="id" />
+    <item name="to_broadcast_page" type="id" />
 </resources>
