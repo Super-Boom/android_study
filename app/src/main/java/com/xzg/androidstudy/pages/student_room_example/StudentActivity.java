@@ -100,7 +100,7 @@ public class StudentActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(etName.getText().toString()) || TextUtils.isEmpty(etAge.getText().toString())) {
                     Toast.makeText(StudentActivity.this, "输入不能为空", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("------","UpdateStudentTask");
+                    Log.d("------", "UpdateStudentTask");
                     new UpdateStudentTask(student.id, etName.getText().toString(), etAge.getText().toString()).execute();
                 }
             }
@@ -165,6 +165,12 @@ public class StudentActivity extends AppCompatActivity {
             studentList.addAll(myDatabase.studentDao().getStudentList());
             return null;
         }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            studentAdapter.notifyDataSetChanged();
+        }
     }
 
     // 更新同学信息
@@ -173,8 +179,9 @@ public class StudentActivity extends AppCompatActivity {
         int id;
         String name;
         String age;
+
         public UpdateStudentTask(final int id, final String name, final String age) {
-            Log.d("------","执行UpdateStudentTask方法");
+            Log.d("------", "执行UpdateStudentTask方法");
             this.id = id;
             this.name = name;
             this.age = age;
@@ -182,11 +189,18 @@ public class StudentActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Log.d("------","-----UpdateStudentTask");
+            Log.d("------", "-----UpdateStudentTask");
             myDatabase.studentDao().updateStudent(new Student(id, name, age));
             studentList.clear();
             studentList.addAll(myDatabase.studentDao().getStudentList());
+            Log.d("-----", studentList.get(1).toString());
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            studentAdapter.notifyDataSetChanged();
         }
     }
 
@@ -195,17 +209,23 @@ public class StudentActivity extends AppCompatActivity {
         Student student;
 
         public DeleteStudentTask(Student student) {
-            Log.d("------","删除");
+            Log.d("------", "删除");
             this.student = student;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Log.d("------执行删除","执行删除");
+            Log.d("------执行删除", "执行删除");
             myDatabase.studentDao().deleteStudent(student);
             studentList.clear();
             studentList.addAll(myDatabase.studentDao().getStudentList());
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            studentAdapter.notifyDataSetChanged();
         }
     }
 
@@ -221,6 +241,12 @@ public class StudentActivity extends AppCompatActivity {
             studentList.clear();
             studentList.addAll(myDatabase.studentDao().getStudentList());
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            studentAdapter.notifyDataSetChanged();
         }
     }
 }
