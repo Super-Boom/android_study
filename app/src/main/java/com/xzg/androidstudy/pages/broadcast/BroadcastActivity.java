@@ -10,21 +10,32 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.xzg.androidstudy.R;
-import com.xzg.androidstudy.broadcast.BroadcastExample;
+import com.xzg.androidstudy.broadcast.MyBroadcastReceiver;
 
 public class BroadcastActivity extends AppCompatActivity {
+    private MyBroadcastReceiver br;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("-----","dsajdsaj");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broadcast);
 
 
-        BroadcastReceiver br = new BroadcastExample();
+        // 注册广播接收器
+        br = new MyBroadcastReceiver();
         IntentFilter filter = new IntentFilter(ConnectivityManager.EXTRA_CAPTIVE_PORTAL);
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        filter.addDataScheme("package");
         this.registerReceiver(br, filter);
-
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 取消广播接收器
+        if (br != null) {
+            unregisterReceiver(br);
+        }
+    }
+
 }

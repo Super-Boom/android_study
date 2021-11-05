@@ -5,18 +5,22 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.xzg.androidstudy.entity.Student;
+import com.xzg.androidstudy.broadcast.MyBroadcastReceiver;
 import com.xzg.androidstudy.pages.broadcast.BroadcastActivity;
 import com.xzg.androidstudy.pages.face.Face;
 import com.xzg.androidstudy.pages.food.FoodActivity;
@@ -99,7 +103,11 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout mainAct = (LinearLayout) findViewById(R.id.main_activity);
             mainAct.addView(btn);
         }
+
+
     }
+
+
 
     // 点击时间
     class ClickHandler implements View.OnClickListener {

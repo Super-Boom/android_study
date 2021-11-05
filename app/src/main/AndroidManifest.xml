@@ -57,23 +57,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 广播 -->
-        <receiver
-            android:name=".broadcast.BroadcastExample"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <!-- 开机广播 -->
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <!-- 电量低广播 -->
-                <action android:name="android.intent.action.BATTERY_LOW" />
-                <!-- 应用被安装广播 -->
-                <action android:name="android.intent.action.PACKAGE_INSTALL" />
-                <!-- 应用被卸载广播 -->
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                <action android:name="android.intent.action.AIRPLANE_MODE" />
-            </intent-filter>
-        </receiver>
+        </activity>
     </application>
 
 </manifest>
