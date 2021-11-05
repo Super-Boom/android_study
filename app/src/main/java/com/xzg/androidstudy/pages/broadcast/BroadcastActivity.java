@@ -18,7 +18,7 @@ import com.xzg.androidstudy.broadcast.MyBroadcastReceiver;
 
 public class BroadcastActivity extends AppCompatActivity {
     private MyBroadcastReceiver myBroadcastReceiver;
-    public static String MY_ACTION = "XZG";
+    public static String MY_ACTION = "XZG1";
     public static String BROADCAST_CONTENT = "broadcast_content";
 
     private EditText editText;
@@ -27,8 +27,14 @@ public class BroadcastActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+
+        // 设置应用注页面标题
+        setTitle(getPackageName());
         setContentView(R.layout.activity_broadcast);
+
         // 自定义广播
         editText = findViewById(R.id.broadcast_send_msg);
         sendBroadcastMsgBtn = findViewById(R.id.sendBroadcastBtn);
