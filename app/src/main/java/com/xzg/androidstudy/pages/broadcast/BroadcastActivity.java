@@ -62,7 +62,6 @@ public class BroadcastActivity extends AppCompatActivity {
                 // 放入广播要携带的数据
                 intent.putExtra(BROADCAST_CONTENT, editText.getText().toString());
                 sendBroadcast(intent);
-                Log.d("-----","hahah");
             }
         });
 
