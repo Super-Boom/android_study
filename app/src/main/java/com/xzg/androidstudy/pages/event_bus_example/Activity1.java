@@ -36,14 +36,11 @@ public class Activity1 extends AppCompatActivity {
                 }
             }
         }).start();
-
     }
-
 
     // 消息接收者
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventBusExample event) {
-        Log.d("-----", "11111");
         textView.setText(event.msg);
     }
 

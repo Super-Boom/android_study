@@ -25,6 +25,7 @@ import com.xzg.androidstudy.pages.broadcast.BroadcastActivity;
 import com.xzg.androidstudy.pages.event_bus_example.Activity1;
 import com.xzg.androidstudy.pages.face.Face;
 import com.xzg.androidstudy.pages.food.FoodActivity;
+import com.xzg.androidstudy.pages.fragment_example.FragmentCreate;
 import com.xzg.androidstudy.pages.image_filter.ImageFilter;
 import com.xzg.androidstudy.pages.student_room_example.StudentActivity;
 
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             new BtnItem("", "跳转到room例子页面", R.id.to_room_example_page, StudentActivity.class),
             new BtnItem("", "跳转到广播页", R.id.to_broadcast_page, BroadcastActivity.class),
             new BtnItem("", "跳转到EventBus页面", R.id.to_event_bus_page, Activity1.class),
+            new BtnItem("", "跳转到Fragment示例页面", R.id.fragment_demo, FragmentCreate.class),
     };
 
 
@@ -108,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 
     // 点击时间
