@@ -19,4 +19,5 @@
     <item name="to_face_page" type="id" />
     <item name="to_room_example_page" type="id" />
     <item name="to_broadcast_page" type="id" />
+    <item name="to_event_bus_page" type="id" />
 </resources>

@@ -34,12 +34,13 @@ android {
     sourceSets {
         main {
             res.srcDirs = [
+                    'src/main/res/layout',
                     'src/main/res/layout/food',
                     'src/main/res/layout/image_filter',
                     'src/main/res/layout/face',
                     'src/main/res/layout/student',
                     'src/main/res/layout/broadcast',
-                    'src/main/res/layout',
+                    'src/main/res/layout/eventbus_example',
                     'src/main/res'
             ]
         }
@@ -91,4 +92,7 @@ dependencies {
     def room_version = "2.3.0"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+    // 引入EventBus
+    implementation 'org.greenrobot:eventbus:3.2.0'
+
 }

@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.xzg.androidstudy.broadcast.MyBroadcastReceiver;
 import com.xzg.androidstudy.pages.broadcast.BroadcastActivity;
+import com.xzg.androidstudy.pages.event_bus_example.Activity1;
 import com.xzg.androidstudy.pages.face.Face;
 import com.xzg.androidstudy.pages.food.FoodActivity;
 import com.xzg.androidstudy.pages.image_filter.ImageFilter;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             new BtnItem("", "跳转到美颜页面", R.id.to_face_page, Face.class),
             new BtnItem("", "跳转到room例子页面", R.id.to_room_example_page, StudentActivity.class),
             new BtnItem("", "跳转到广播页", R.id.to_broadcast_page, BroadcastActivity.class),
+            new BtnItem("", "跳转到EventBus页面", R.id.to_event_bus_page, Activity1.class),
     };
 
 

@@ -18,7 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".pages.broadcast.BroadcastActivity"></activity>
+        <activity android:name=".pages.event_bus_example.Activity2"></activity>
+        <activity android:name=".pages.event_bus_example.Activity1" />
+        <activity android:name=".pages.broadcast.BroadcastActivity" />
         <activity android:name=".pages.student_room_example.StudentActivity" />
         <activity android:name=".pages.face.Face" />
 
