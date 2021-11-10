@@ -21,6 +21,7 @@ public class FragmentItem extends Fragment {
 
 
     TextView textView;
+    TextView textView2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,13 +39,26 @@ public class FragmentItem extends Fragment {
         EventBus.getDefault().register(this);
         View view = inflater.inflate(R.layout.fragment_item, container, false);
         textView = view.findViewById(R.id.fragment_get_event_msg);
-        textView.setText("hahahah");
+        textView2 = view.findViewById(R.id.fragment_get_event_msg2);
         return view;
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    /**
+     * 订阅者1
+     * @param eventBusExample
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
     public void onGetMsg(EventBusExample eventBusExample) {
         textView.setText(eventBusExample.msg);
+    }
+
+    /**
+     * 订阅者2
+     * @param eventBusExample
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
+    public void onGetMsg2(EventBusExample eventBusExample) {
+        textView2.setText(eventBusExample.msg);
     }
 
     @Override

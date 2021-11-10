@@ -39,7 +39,7 @@ public class Activity1 extends AppCompatActivity {
     }
 
     // 消息接收者
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.POSTING)
     public void onMessageEvent(EventBusExample event) {
         textView.setText(event.msg);
     }

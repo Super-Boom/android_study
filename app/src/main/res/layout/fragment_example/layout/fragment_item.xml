@@ -6,10 +6,23 @@
     tools:context=".pages.fragment_example.FragmentItem">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/fragment_get_event_msg"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ceshi" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fragment_get_event_msg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="test1" />
+
+        <TextView
+            android:id="@+id/fragment_get_event_msg2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="test2" />
+    </LinearLayout>
+
 
 </FrameLayout>
