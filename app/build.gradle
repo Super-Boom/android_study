@@ -34,6 +34,7 @@ android {
     sourceSets {
         main {
             res.srcDirs = [
+                    'src/main/res',
                     'src/main/res/layout',
                     'src/main/res/layout/food',
                     'src/main/res/layout/image_filter',
@@ -42,7 +43,7 @@ android {
                     'src/main/res/layout/broadcast',
                     'src/main/res/layout/eventbus_example',
                     'src/main/res/layout/fragment_example',
-                    'src/main/res'
+                    'src/main/res/layout/adapter_example',
             ]
         }
     }

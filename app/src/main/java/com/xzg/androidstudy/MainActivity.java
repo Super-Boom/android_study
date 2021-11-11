@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xzg.androidstudy.broadcast.MyBroadcastReceiver;
+import com.xzg.androidstudy.pages.adapter_example.AdapterExample;
 import com.xzg.androidstudy.pages.broadcast.BroadcastActivity;
 import com.xzg.androidstudy.pages.event_bus_example.Activity1;
 import com.xzg.androidstudy.pages.face.Face;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             new BtnItem("", "跳转到广播页", R.id.to_broadcast_page, BroadcastActivity.class),
             new BtnItem("", "跳转到EventBus页面", R.id.to_event_bus_page, Activity1.class),
             new BtnItem("", "跳转到Fragment示例页面", R.id.fragment_demo, FragmentCreate.class),
+            new BtnItem("", "跳转到Adapter示例页面", R.id.adapter_demo, AdapterExample.class),
     };
 
 
