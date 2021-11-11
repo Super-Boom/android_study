@@ -44,6 +44,7 @@ android {
                     'src/main/res/layout/eventbus_example',
                     'src/main/res/layout/fragment_example',
                     'src/main/res/layout/adapter_example',
+                    'src/main/res/layout/recyclerview_example',
             ]
         }
     }
@@ -96,5 +97,4 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     // 引入EventBus
     implementation 'org.greenrobot:eventbus:3.2.0'
-
 }

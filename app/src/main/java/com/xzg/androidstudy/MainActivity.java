@@ -28,6 +28,7 @@ import com.xzg.androidstudy.pages.face.Face;
 import com.xzg.androidstudy.pages.food.FoodActivity;
 import com.xzg.androidstudy.pages.fragment_example.FragmentCreate;
 import com.xzg.androidstudy.pages.image_filter.ImageFilter;
+import com.xzg.androidstudy.pages.recyclerview_example.activity.Main;
 import com.xzg.androidstudy.pages.student_room_example.StudentActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             new BtnItem("", "跳转到EventBus页面", R.id.to_event_bus_page, Activity1.class),
             new BtnItem("", "跳转到Fragment示例页面", R.id.fragment_demo, FragmentCreate.class),
             new BtnItem("", "跳转到Adapter示例页面", R.id.adapter_demo, AdapterExample.class),
+            new BtnItem("", "跳转到RecyclerView示例页面", R.id.recyclerview_demo, Main.class),
     };
 
 

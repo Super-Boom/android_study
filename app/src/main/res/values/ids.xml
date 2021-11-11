@@ -22,4 +22,5 @@
     <item name="to_event_bus_page" type="id" />
     <item name="fragment_demo" type="id" />
     <item name="adapter_demo" type="id" />
+    <item name="recyclerview_demo" type="id" />
 </resources>
