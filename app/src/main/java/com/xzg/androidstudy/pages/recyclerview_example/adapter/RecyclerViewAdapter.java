@@ -12,13 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.xzg.androidstudy.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
 
+    private List<String> dataSource;
     private Context context;
 
     public RecyclerViewAdapter(Context context) {
         this.context = context;
+        this.dataSource = new ArrayList<>();
+    }
+
+    public void setDataSource(List<String> dataSource) {
+        this.dataSource = dataSource;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -36,6 +46,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.imageView.setImageResource(getIcon(position));
+        holder.textView.setText(dataSource.get(position));
     }
 
     /**
@@ -45,10 +56,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      */
     @Override
     public int getItemCount() {
-        return 0;
+        return dataSource.size();
     }
 
     private int getIcon(int position) {
+        switch (position % 5) {
+            case 0:
+                return R.drawable.avatar1;
+            case 1:
+                return R.drawable.avatar2;
+            case 2:
+                return R.drawable.avatar3;
+            case 3:
+                return R.drawable.avatar4;
+            case 4:
+                return R.drawable.avatar5;
+        }
         return 0;
     }
 
@@ -62,8 +85,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             imageView = itemView.findViewById(R.id.iv);
             textView = itemView.findViewById(R.id.tv);
-
-
         }
     }
 }
