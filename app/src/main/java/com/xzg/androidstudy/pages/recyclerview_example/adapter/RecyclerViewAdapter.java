@@ -5,25 +5,35 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.xzg.androidstudy.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * 1. 继承RecyclerView.Adapter
+ * 2. 绑定ViewHolder
+ * 3. 实现Adapter的相关方法
+ */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
 
     private List<String> dataSource;
     private Context context;
+    private RecyclerView recyclerView;
 
-    public RecyclerViewAdapter(Context context) {
+    public RecyclerViewAdapter(Context context, RecyclerView recyclerView) {
         this.context = context;
         this.dataSource = new ArrayList<>();
+        this.recyclerView = recyclerView;
     }
 
     public void setDataSource(List<String> dataSource) {
@@ -47,6 +57,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.imageView.setImageResource(getIcon(position));
         holder.textView.setText(dataSource.get(position));
+
+        /**
+         * 只在瀑布流布局中使用随机高度
+         */
+        if (recyclerView.getLayoutManager().getClass() == StaggeredGridLayoutManager.class) {
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getRandomHeight());
+            holder.textView.setLayoutParams(params);
+        } else {
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            holder.imageView.setLayoutParams(params);
+        }
     }
 
     /**
@@ -74,6 +95,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
         return 0;
     }
+
+    /**
+     * 返回不同的ItemView高度
+     *
+     * @return
+     */
+    private int getRandomHeight() {
+        return (int) (Math.random() * 1000);
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

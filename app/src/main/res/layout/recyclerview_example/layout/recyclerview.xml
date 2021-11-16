@@ -12,6 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="添加数据" />
+    <Button
+        android:id="@+id/change_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改布局" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
