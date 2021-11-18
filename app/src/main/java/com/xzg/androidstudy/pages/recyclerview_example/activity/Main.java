@@ -65,10 +65,13 @@ public class Main extends AppCompatActivity {
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(v.getContext(), 2);
                     recyclerView.setLayoutManager(gridLayoutManager);
                 } else if (recyclerView.getLayoutManager().getClass() == GridLayoutManager.class) {
+                    Log.d("-----","瀑布流布局");
                     // 瀑布流布局
                     staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
                     // 解决滑动位置变化
                     staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+                    recyclerView.setItemAnimator(null);
+//                    recyclerView.addItemDecoration(new StaggeredItemDecoration(space));//单位px
                     recyclerView.setLayoutManager(staggeredGridLayoutManager);
                 } else {
                     // 线性布局
@@ -79,18 +82,18 @@ public class Main extends AppCompatActivity {
         });
 
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                staggeredGridLayoutManager.invalidateSpanAssignments();
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//                staggeredGridLayoutManager.invalidateSpanAssignments();
+//            }
+//
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//            }
+//        });
     }
 
 }

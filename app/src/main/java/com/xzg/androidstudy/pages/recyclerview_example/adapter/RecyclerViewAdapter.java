@@ -1,6 +1,8 @@
 package com.xzg.androidstudy.pages.recyclerview_example.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.luck.picture.lib.tools.ScreenUtils;
 import com.xzg.androidstudy.R;
+import com.xzg.androidstudy.pages.recyclerview_example.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +31,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     private List<String> dataSource;
+
+
+    private List<Item> cardList;
+
     private Context context;
     private RecyclerView recyclerView;
+    private int addDataPosition = -1;
+
+    // 元素属性
+    private String title;
+    private String img_url;
+    private int width;
+    private int height;
+
+    private final double STANDARD_SCALE = 1.1;
+    private final float SCALE = 4 * 1.0f / 3;
+
 
     public RecyclerViewAdapter(Context context, RecyclerView recyclerView) {
         this.context = context;
@@ -62,11 +81,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
          * 只在瀑布流布局中使用随机高度
          */
         if (recyclerView.getLayoutManager().getClass() == StaggeredGridLayoutManager.class) {
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getRandomHeight());
-            holder.textView.setLayoutParams(params);
+            String imageView = dataSource.get(position);
+            // 计算图片宽高
+            ViewGroup.LayoutParams layoutParams = holder.imageView.getLayoutParams();
+            float itemWidth = (ScreenUtils.getScreenWidth(context) - 20) / 2;
+            layoutParams.width = (int) itemWidth;
+            width = holder.imageView.getWidth();
+            height = holder.imageView.getHeight();
+            Log.d("-----width", String.valueOf(width));
+            Log.d("-----height", String.valueOf(height));
+            float scale = height / width;
+            if (scale > STANDARD_SCALE) {
+                layoutParams.height = (int) (itemWidth * SCALE);
+            } else {
+                layoutParams.height = (int) itemWidth;
+            }
+
+
+            holder.imageView.setLayoutParams(layoutParams);
         } else {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             holder.imageView.setLayoutParams(params);
+        }
+
+        // 改ItemView的背景颜色
+        if (addDataPosition == position) {
+            holder.itemView.setBackgroundColor(Color.RED);
+        } else {
+            holder.itemView.setBackgroundColor(Color.parseColor("#A4D3EE"));
         }
     }
 
@@ -113,7 +155,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             imageView = itemView.findViewById(R.id.iv);
             textView = itemView.findViewById(R.id.tv);
         }
