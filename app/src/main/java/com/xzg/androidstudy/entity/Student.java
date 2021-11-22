@@ -6,6 +6,9 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+/**
+ * Room本地储存定义的Entity
+ */
 @Entity(tableName = "student")
 public class Student {
     @PrimaryKey(autoGenerate = true)
