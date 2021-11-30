@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidStudy</string>
+<!--    <string name="app_name">AndroidStudy</string>-->
     <string name="btn_start_intent_exp">start intent exp</string>
     <string name="btn_start_activity">start activity</string>
     <string name="open_tb">open taobao</string>

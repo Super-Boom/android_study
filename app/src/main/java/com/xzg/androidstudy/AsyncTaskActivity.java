@@ -50,6 +50,9 @@ public class AsyncTaskActivity extends AppCompatActivity {
 
 
     class MyTask extends AsyncTask<String, Void, String> {
+
+        private TrailProductImpl trailProductService = new TrailProductImpl();
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -59,19 +62,7 @@ public class AsyncTaskActivity extends AppCompatActivity {
         // 请求服务器
         @Override
         protected String doInBackground(String... strings) {
-            TrailProductImpl trailProduct = new TrailProductImpl();
-            Call<TrailProductDetail> call = trailProduct.getTrailProductDetail();
-            try {
-                TrailProductDetail trailProductDetail = call.execute().body();
-                Log.d("trailProductDetail---", String.valueOf(trailProductDetail));
-
-                if (trailProductDetail.getCode() == 200) {
-                    return JSON.toJSONString(trailProductDetail);
-                }
-                Log.d("trailProductDetail", String.valueOf(trailProductDetail));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            TrailProductDetail trailProductDetail = trailProductService.getTrailProductDetail();
             return null;
         }
 

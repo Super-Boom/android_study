@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +31,8 @@ import com.xzg.androidstudy.pages.fragment_example.FragmentCreate;
 import com.xzg.androidstudy.pages.image_filter.ImageFilter;
 import com.xzg.androidstudy.pages.recyclerview_example.activity.Main;
 import com.xzg.androidstudy.pages.student_room_example.StudentActivity;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -111,10 +114,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout mainAct = (LinearLayout) findViewById(R.id.main_activity);
             mainAct.addView(btn);
         }
-
-
     }
-
 
     // 点击时间
     class ClickHandler implements View.OnClickListener {

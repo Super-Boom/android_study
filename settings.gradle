@@ -1,2 +1,3 @@
+include ':xzgLib'
 include ':app'
 rootProject.name = "AndroidStudy"
