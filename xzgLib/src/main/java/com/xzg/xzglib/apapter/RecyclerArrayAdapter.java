@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.xzg.xzglib.holder.BaseViewHolder;
 import com.xzg.xzglib.inter.InterItemView;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
+public abstract class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
 
     private OnItemChildClickListener onItemChildClickListener;
     private ArrayList<InterItemView> headers = new ArrayList<>();
@@ -56,9 +57,21 @@ public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view =
+        View view = createViewByType(parent, viewType);
+        if (view != null) {
+            return new BaseViewHolder(view);
+        }
+        final BaseViewHolder viewHolder = onCreateViewHolder(parent, viewType);
+        
         return null;
     }
+
+    /**
+     * @param parent
+     * @param viewType
+     * @return
+     */
+    public abstract BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType);
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
@@ -79,13 +92,49 @@ public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         return headers.size();
     }
 
+    /**
+     * 添加headerView
+     *
+     * @param view view
+     */
+    public void addHeader(InterItemView view) {
+        if (view == null) {
+            throw new NullPointerException("InterItemView can't be null");
+        }
+        headers.add(view);
+        notifyItemInserted(headers.size() - 1);
+    }
+
     private View createViewByType(ViewGroup parent, int viewType) {
         for (InterItemView headerView : headers) {
             if (headerView.hashCode() == viewType) {
                 View view = headerView.onCreateView(parent);
-                
+                StaggeredGridLayoutManager.LayoutParams layoutParams;
+                if (view.getLayoutParams() != null) {
+                    layoutParams = new StaggeredGridLayoutManager.LayoutParams(view.getLayoutParams());
+                } else {
+                    layoutParams = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
+                layoutParams.setFullSpan(true);
+                view.setLayoutParams(layoutParams);
+                return view;
             }
         }
+        for (InterItemView footerView : footers) {
+            if (footerView.hashCode() == viewType) {
+                View view = footerView.onCreateView(parent);
+                StaggeredGridLayoutManager.LayoutParams layoutParams;
+                if (view.getLayoutParams() != null) {
+                    layoutParams = new StaggeredGridLayoutManager.LayoutParams(view.getLayoutParams());
+                } else {
+                    layoutParams = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
+                layoutParams.setFullSpan(true);
+                view.setLayoutParams(layoutParams);
+                return view;
+            }
+        }
+        return null;
     }
 
 
