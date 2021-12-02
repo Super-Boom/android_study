@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".pages.recyclerview_example.activity.Main">
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/add_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="添加数据" />
+
     <Button
         android:id="@+id/change_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="修改布局" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.xzg.xzglib.view.XzgRefreshView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"
+        app:layout_empty="@layout/common_components/layout/view_custom_empty_data"
+        app:layout_error="@layout/common_components/layout/view_custom_data_error"
+        app:layout_progress="@layout/common_components/layout/view_progress" />
 </LinearLayout>

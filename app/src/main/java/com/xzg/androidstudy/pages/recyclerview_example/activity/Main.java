@@ -13,7 +13,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.xzg.androidstudy.R;
+import com.xzg.androidstudy.adapter.ImageStageredAdapter;
 import com.xzg.androidstudy.pages.recyclerview_example.adapter.RecyclerViewAdapter;
+import com.xzg.xzglib.view.XzgRefreshView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,63 +26,13 @@ public class Main extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private StaggeredGridLayoutManager staggeredGridLayoutManager;
 
+    private XzgRefreshView refreshView;
+    private ImageStageredAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerview);
-
-        recyclerView = findViewById(R.id.recycler_view);
-        // 线性布局
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        // 横向排列ItemView
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        // 数据反向展示
-        linearLayoutManager.setReverseLayout(true);
-
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        recyclerViewAdapter = new RecyclerViewAdapter(this, recyclerView);
-        recyclerView.setAdapter(recyclerViewAdapter);
-
-        // 添加数据
-        findViewById(R.id.add_data).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                List<String> data = new ArrayList<>();
-
-                for (int i = 0; i < 20; i++) {
-                    String s = "第" + i + "条数据";
-                    data.add(s);
-                }
-                recyclerViewAdapter.setDataSource(data);
-            }
-        });
-
-        // 修改布局
-        findViewById(R.id.change_layout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 从线性布局切换为网格布局
-                if (recyclerView.getLayoutManager().getClass() == LinearLayoutManager.class) {
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(v.getContext(), 2);
-                    recyclerView.setLayoutManager(gridLayoutManager);
-                } else if (recyclerView.getLayoutManager().getClass() == GridLayoutManager.class) {
-                    Log.d("-----","瀑布流布局");
-                    // 瀑布流布局
-                    staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-                    // 解决滑动位置变化
-                    staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
-                    recyclerView.setItemAnimator(null);
-//                    recyclerView.addItemDecoration(new StaggeredItemDecoration(space));//单位px
-                    recyclerView.setLayoutManager(staggeredGridLayoutManager);
-                } else {
-                    // 线性布局
-                    recyclerView.setLayoutManager(linearLayoutManager);
-
-                }
-            }
-        });
-
     }
 
 }

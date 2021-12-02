@@ -62,7 +62,7 @@ public abstract class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
             return new BaseViewHolder(view);
         }
         final BaseViewHolder viewHolder = onCreateViewHolder(parent, viewType);
-        
+
         return null;
     }
 
