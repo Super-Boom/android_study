@@ -21,7 +21,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_empty="@layout/common_components/layout/view_custom_empty_data"
-        app:layout_error="@layout/common_components/layout/view_custom_data_error"
-        app:layout_progress="@layout/common_components/layout/view_progress" />
+        app:layout_empty="@layout/view_custom_empty_data"
+        app:layout_error="@layout/view_custom_data_error"
+        app:layout_progress="@layout/view_progress" />
 </LinearLayout>

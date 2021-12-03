@@ -44,6 +44,17 @@ public class XzgRefreshView extends FrameLayout {
         super(context);
     }
 
+    public XzgRefreshView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initAttrs(attrs);
+        initView();
+    }
+
+    public XzgRefreshView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        initAttrs(attrs);
+        initView();
+    }
 
     /**
      * 初始化资源

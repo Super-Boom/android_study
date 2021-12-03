@@ -34,6 +34,7 @@ android {
     sourceSets {
         main {
             res.srcDirs = [
+                    'src/main/res/layout/common_components',
                     'src/main/res',
                     'src/main/res/layout',
                     'src/main/res/layout/food',
@@ -45,7 +46,7 @@ android {
                     'src/main/res/layout/fragment_example',
                     'src/main/res/layout/adapter_example',
                     'src/main/res/layout/recyclerview_example',
-                    'src/main/res/layout/common_components',
+
             ]
         }
     }
