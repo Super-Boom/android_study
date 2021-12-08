@@ -33,6 +33,15 @@ public class Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerview);
+        recyclerView = findViewById(R.id.recycler_view);
+        // 自定义 ImageStageredAdapter 瀑布流中的图片高度
+        adapter = new ImageStageredAdapter(this);
+        recyclerView.setAdapter(adapter);
+
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        // 设置分割线
+
     }
 
 }

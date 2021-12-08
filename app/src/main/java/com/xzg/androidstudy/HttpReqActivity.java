@@ -248,7 +248,7 @@ public class HttpReqActivity extends AppCompatActivity {
     // 使用 Retrofit 发送http请求
     private Call<TrailProductDetail> getTrailProductDetail() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://47.96.113.94:12500")
+                .baseUrl("")
                 .addConverterFactory(FastJsonConverterFactory.create())
                 .build();
         GetTrailProductDetail getTrailProductDetail;

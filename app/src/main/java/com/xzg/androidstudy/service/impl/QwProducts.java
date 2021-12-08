@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.fastjson.FastJsonConverterFactory;
 
 public class QwProducts implements com.xzg.androidstudy.service.QwProducts {
-    private String baseUrl = "http://47.96.113.94:12401";
+    private String baseUrl = "";
 
     @Override
     public Call<Products> getQwProducts() {
