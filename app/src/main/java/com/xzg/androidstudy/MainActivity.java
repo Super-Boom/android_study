@@ -5,23 +5,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.xzg.androidstudy.broadcast.MyBroadcastReceiver;
 import com.xzg.androidstudy.pages.adapter_example.AdapterExample;
 import com.xzg.androidstudy.pages.broadcast.BroadcastActivity;
 import com.xzg.androidstudy.pages.event_bus_example.Activity1;
@@ -29,10 +23,8 @@ import com.xzg.androidstudy.pages.face.Face;
 import com.xzg.androidstudy.pages.food.FoodActivity;
 import com.xzg.androidstudy.pages.fragment_example.FragmentCreate;
 import com.xzg.androidstudy.pages.image_filter.ImageFilter;
-import com.xzg.androidstudy.pages.recyclerview_example.activity.Main;
+import com.xzg.androidstudy.pages.recyclerview_example.activity.ImageList;
 import com.xzg.androidstudy.pages.student_room_example.StudentActivity;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -79,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             new BtnItem("", "跳转到EventBus页面", R.id.to_event_bus_page, Activity1.class),
             new BtnItem("", "跳转到Fragment示例页面", R.id.fragment_demo, FragmentCreate.class),
             new BtnItem("", "跳转到Adapter示例页面", R.id.adapter_demo, AdapterExample.class),
-            new BtnItem("", "跳转到RecyclerView示例页面", R.id.recyclerview_demo, Main.class),
+            new BtnItem("", "跳转到RecyclerView示例页面", R.id.recyclerview_demo, ImageList.class),
     };
 
 

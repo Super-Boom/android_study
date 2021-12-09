@@ -17,11 +17,17 @@
         android:layout_height="wrap_content"
         android:text="修改布局" />
 
-    <com.xzg.xzglib.view.XzgRefreshView
+<!--    <com.xzg.xzglib.view.XzgRefreshView-->
+<!--        android:id="@+id/recycler_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_empty="@layout/view_custom_empty_data"-->
+<!--        app:layout_error="@layout/view_custom_data_error"-->
+<!--        app:layout_progress="@layout/view_progress" />-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_empty="@layout/view_custom_empty_data"
-        app:layout_error="@layout/view_custom_data_error"
-        app:layout_progress="@layout/view_progress" />
+        android:layout_height="wrap_content"/>
 </LinearLayout>

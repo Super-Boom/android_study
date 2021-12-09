@@ -1,6 +1,7 @@
 package com.xzg.androidstudy.pages.recyclerview_example.activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,12 +16,13 @@ import android.widget.LinearLayout;
 import com.xzg.androidstudy.R;
 import com.xzg.androidstudy.adapter.ImageStageredAdapter;
 import com.xzg.androidstudy.pages.recyclerview_example.adapter.RecyclerViewAdapter;
+import com.xzg.xzglib.item.SpaceViewItemLine;
 import com.xzg.xzglib.view.XzgRefreshView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main extends AppCompatActivity {
+public class ImageList extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
     private LinearLayoutManager linearLayoutManager;
@@ -30,7 +32,7 @@ public class Main extends AppCompatActivity {
     private ImageStageredAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerview);
         recyclerView = findViewById(R.id.recycler_view);
@@ -41,6 +43,7 @@ public class Main extends AppCompatActivity {
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         // 设置分割线
+        SpaceViewItemLine itemDecoration = new SpaceViewItemLine(20);
 
     }
 

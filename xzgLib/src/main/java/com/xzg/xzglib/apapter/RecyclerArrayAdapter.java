@@ -92,6 +92,16 @@ public abstract class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
         return headers.size();
     }
 
+
+    /**
+     * 获取footer的数量
+     *
+     * @return 数量
+     */
+    public int getFooterCount() {
+        return footers.size();
+    }
+
     /**
      * 添加headerView
      *
