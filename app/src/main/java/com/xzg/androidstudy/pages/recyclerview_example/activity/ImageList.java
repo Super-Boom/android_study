@@ -44,7 +44,22 @@ public class ImageList extends AppCompatActivity {
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         // 设置分割线
         SpaceViewItemLine itemDecoration = new SpaceViewItemLine(20);
+        recyclerView.addItemDecoration(itemDecoration);
+
 
     }
+
+    /**
+     * 添加图片
+     */
+//    private void addData() {
+//        recyclerView.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
+//    }
+
 
 }

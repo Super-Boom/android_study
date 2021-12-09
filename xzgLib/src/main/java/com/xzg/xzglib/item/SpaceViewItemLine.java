@@ -99,6 +99,25 @@ public class SpaceViewItemLine extends RecyclerView.ItemDecoration {
                     outRect.top = space;
                 }
                 outRect.bottom = space;
+            } else {
+                float expectedHeight = (float) (parent.getHeight() - space * (spanCount + (mPaddingEdgeSide ? 1 : -1))) / spanCount;
+                float originHeight = (float) parent.getHeight() / spanCount;
+                float expectedY = (mPaddingEdgeSide ? space : 0) + (expectedHeight + space) * spanIndex;
+                float originY = originHeight * spanIndex;
+                outRect.bottom = (int) (expectedY - originY);
+                outRect.top = (int) (originHeight - outRect.bottom - expectedHeight);
+                if (position - headerCount < spanCount && mPaddingStart) {
+                    outRect.left = space;
+                }
+                outRect.right = space;
+            }
+        } else if (mPaddingHeaderFooter) {
+            if (orientation == VERTICAL) {
+                outRect.right = outRect.left = mPaddingEdgeSide ? space : 0;
+                outRect.top = mPaddingStart ? space : 0;
+            } else {
+                outRect.top = outRect.bottom = mPaddingEdgeSide ? space : 0;
+                outRect.left = mPaddingStart ? space : 0;
             }
         }
     }

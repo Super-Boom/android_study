@@ -15,6 +15,7 @@ import com.xzg.xzglib.utils.RecyclerUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public abstract class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
@@ -24,6 +25,8 @@ public abstract class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
     private ArrayList<InterItemView> footers = new ArrayList<>();
     private Context mContext;
     private List<T> mObjects;
+
+
 
 
     public RecyclerArrayAdapter(Context context) {
@@ -150,5 +153,13 @@ public abstract class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
 
     public OnItemChildClickListener getOnItemChildClickListener() {
         return onItemChildClickListener;
+    }
+
+    /**
+     * 添加所有数据
+     * @param collection Collection集合数据
+     */
+    public void addAll(Collection<? extends T> collection) {
+
     }
 }
